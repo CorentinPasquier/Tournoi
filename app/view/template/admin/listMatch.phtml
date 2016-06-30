@@ -1,0 +1,71 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: matpif
+ * Date: 10/05/16
+ * Time: 19:31
+ */
+/** @var AdminController $_admin */
+$_admin = $this;
+$matchs = $_admin->getAllMatchEnCours();
+$equipeCollection = new EquipeCollection();
+?>
+<div class="row">
+    <div class="col-md-3 col-md-offset-9">
+        <a href="<?php echo $_admin->getUrlAction('newMatch'); ?>" class="btn btn-primary btn-lg btn-block">Ajouter un match</a>
+    </div>
+    <div class="col-lg-6 col-lg-offset-3">
+        <h2>Changer la date d'une ronde</h2>
+        <form action="<?php echo $_admin->getUrlAction('addDateByRonde'); ?>" method="post">
+            <div class="form-group">
+                <label for="ronde" class="col-lg-2">Ronde</label>
+                <select id="ronde" name="ronde" class="form-control">
+                    <?php
+                    $_equipeCollection = new EquipeCollection();
+                    $nbrRonde = $_equipeCollection->getNumberMatch();
+                    for($i = 1; $i<= $nbrRonde; $i++) :?>
+                        <option value="<?php echo $i ?>"> <?php echo $i ?></option>
+                    <?php endfor; ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date" class="col-lg-2">Semaine</label>
+                <select id="date" name="date" class="form-control">
+                    <?php
+                    $_equipeCollection = new EquipeCollection();
+                    $nbrRonde = $_equipeCollection->getNumberMatch();
+                    for($i = 1; $i<= 52; $i++) :?>
+                        <option value="<?php echo $i ?>"> <?php echo $i ?></option>
+                    <?php endfor; ?>
+                </select>
+            </div>
+            <div class="row col-lg-offset-7">
+                <input type="submit" class="btn btn-default" value="Valide">
+            </div>
+        </form>
+        <h2>Matchs du tournoi</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Equipe 1</th>
+                    <th>Equipe 2</th>
+                    <th>Ronde</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php /** @var MatchModel $match */ ?>
+            <?php foreach ($matchs as $match): ?>
+                <?php $equipe1 = $equipeCollection->loadById($match->getAttribute('equipe_id_1')); ?>
+                <?php $equipe2 = $equipeCollection->loadById($match->getAttribute('equipe_id_2')); ?>
+                <tr>
+                    <td><?php echo $equipe1->getAttribute('name'); ?></td>
+                    <td><?php echo $equipe2->getAttribute('name'); ?></td>
+                    <td><?php echo $match->getAttribute('ronde'); ?></td>
+                    <td><?php echo $match->getAttribute('date'); ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,117 @@
+<?php
+/**
+ * User: corpas
+ * Date: 08/05/16
+ * Time: 21:08
+ */
+/** @var MatchsController $_match */
+$_match = $this;
+$_post = $_match->getPost();
+$_utilisateur = Access::getInstance()->getCurrentUser();
+$_matchCollection = $_match->getAllMatch();
+$idMatch = $_post['matchDetail'];
+$match = $_matchCollection->loadById($idMatch);
+$_simpleCollection = new SimpleCollection();
+$_doubleCollection = new DoubleCollection();
+$_allSimple = $_simpleCollection->load(["match" => ["=", $idMatch]]);
+$_allDouble = $_doubleCollection->load(["match" => ["=", $idMatch]]);
+$equipe = new EquipeCollection();
+?>
+
+<div>
+    <form class="form-horizontal" method="post" action="saveDetail">
+        <input type="hidden" name="match" value="<?php echo $idMatch ?>">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1" id="simplediv">
+                <div class="row" align="center">
+                    <h1><?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name') ?> <span id="scoreE1">0</span> - <span id="scoreE2">0</span> <?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name') ?></h1>
+                </div>
+                <div class="row marginContentTab">
+                    <button class="btn btn-info mrg" type="submit">ENREGISTRER</button>
+                </div>
+                <h1>Simples <button class="btn btn-default green" type="button" id="addSimple">+</button></h1>
+                <div class="row" align="center" id="labels">
+                    <label class="col-lg-2" for="joueur1">Joueur (<?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name')?>)</label>
+                    <label class="col-lg-2" for="joueur2">Joueur (<?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name')?>)</label>
+                    <label class="col-lg-2" for="score1_1">Match 1</label>
+                    <label class="col-lg-2" for="score2">Match 2</label>
+                    <label class="col-lg-2" for="score3">Match 3</label>
+                </div>
+<!--                DEBUT MATCH SIMPLE-->
+                <?php $i=0; 
+                /** @var SimpleModel $simple */
+                foreach ($_allSimple as $simple):
+                    $i++?>
+                <div class="row" align="center" id="simple[<?php echo $i ?>]">
+                    <input type="hidden" name="databaseIdS[<?php echo $i ?>]" value="<?php echo $simple->getAttribute('id')?>"> <!--// AJOUTER AU JS-->
+                    <div class="col-lg-2">
+                        <input class="form-control form-control2" id="joueurS1[<?php echo $i ?>]" type="text" value="<?php echo $simple->getAttribute('joueur_1') ?>" name="joueurS[<?php echo $i ?>][joueur_1]">
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-control form-control2" id="joueurS2[<?php echo $i ?>]" type="text" value="<?php echo $simple->getAttribute('joueur_2') ?>" name="joueurS[<?php echo $i ?>][joueur_2]">
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-control" id="scoreS1_1[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_1_1') ?>" name="scoreS[<?php echo $i ?>][match_1_1]">
+                        <input class="form-control" id="scoreS1_2[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_1_2') ?>" name="scoreS[<?php echo $i ?>][match_1_2]">
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-control btn-xs" id="scoreS2_1[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_2_1') ?>" name="scoreS[<?php echo $i ?>][match_2_1]">
+                        <input class="form-control btn-xs" id="scoreS2_2[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_2_2') ?>" name="scoreS[<?php echo $i ?>][match_2_2]">
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-control btn-xs" id="scoreS3_1[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_3_1') ?>" name="scoreS[<?php echo $i ?>][match_3_1]">
+                        <input class="form-control btn-xs" id="scoreS3_2[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_3_2') ?>" name="scoreS[<?php echo $i ?>][match_3_2]">
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-default red" type="button" data-idS="<?php echo $i ?>">-</button>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+<!--                FIN MATCH SIMPLE-->
+            </div>
+            <div class="col-lg-10 col-lg-offset-1" id="doublediv">
+                <h1>Doubles <button class="btn btn-default green" type="button" id="addDouble">+</button></h1>
+                <div class="row" align="center" id="labelsD">
+                    <label class="col-lg-2" for="joueur1">Joueurs (<?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name')?>)</label>
+                    <label class="col-lg-2" for="joueur2">Joueurs (<?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name')?>)</label>
+                    <label class="col-lg-2" for="score1_1">Match 1</label>
+                    <label class="col-lg-2" for="score2">Match 2</label>
+                    <label class="col-lg-2" for="score3">Match 3</label>
+                </div>
+<!--                DEBUT MATCH DOUBLE-->
+                <?php $i=0;
+                /** @var DoubleModel $double */
+                foreach ($_allDouble as $double):
+                $i++;?>
+                <div class="row" align="center" id="double[<?php echo $i ?>]">
+                    <input type="hidden" name="databaseIdD[<?php echo $i ?>]" value="<?php echo $double->getAttribute('id')?>">
+                    <div class="col-lg-2">
+                        <input class="form-control form-control2" id="joueurD1_1[<?php echo $i ?>]" type="text" value="<?php echo $double->getAttribute('joueur_1_1') ?>" name="joueurD[<?php echo $i ?>][joueur_1_1]">
+                        <input class="form-control form-control2" id="joueurD2_1[<?php echo $i ?>]" type="text" value="<?php echo $double->getAttribute('joueur_1_2') ?>" name="joueurD[<?php echo $i ?>][joueur_1_2]">
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-control form-control2" id="joueurD1_2[<?php echo $i ?>]" type="text" value="<?php echo $double->getAttribute('joueur_2_1') ?>" name="joueurD[<?php echo $i ?>][joueur_2_1]">
+                        <input class="form-control form-control2" id="joueurD2_2[<?php echo $i ?>]" type="text" value="<?php echo $double->getAttribute('joueur_2_2') ?>" name="joueurD[<?php echo $i ?>][joueur_2_2]">
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-control" id="scoreD1_1[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_1_1') ?>" name="scoreD[<?php echo $i ?>][match_1_1]">
+                        <input class="form-control" id="scoreD1_2[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_1_2') ?>" name="scoreD[<?php echo $i ?>][match_1_2]">
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-control btn-xs" id="scoreD2_1[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_2_1') ?>" name="scoreD[<?php echo $i ?>][match_2_1]">
+                        <input class="form-control btn-xs" id="scoreD2_2[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_2_2') ?>" name="scoreD[<?php echo $i ?>][match_2_2]">
+                    </div>
+                    <div class="col-lg-2">
+                        <input class="form-control btn-xs" id="scoreD3_1[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_3_1') ?>" name="scoreD[<?php echo $i ?>][match_3_1]">
+                        <input class="form-control btn-xs" id="scoreD3_2[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_3_2') ?>" name="scoreD[<?php echo $i ?>][match_3_2]">
+                    </div>
+                    <div class="col-lg-2">
+                        <button class="btn btn-default red" type="button" data-idD="<?php echo $i ?>">-</button>
+                    </div>
+                </div>
+                <?php endforeach;?>
+<!--                FIN MATCH DOUBLE-->
+            </div>
+        </div>
+    </form>
+</div>

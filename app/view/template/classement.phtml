@@ -1,0 +1,51 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: matpif
+ * Date: 10/05/16
+ * Time: 13:39
+ */
+/** @var ClassementController $_classement */
+$_classement = $this;
+$_equipes = $_classement->getAllEquipeWithScore();
+$equipeCollection = new EquipeCollection();
+?>
+<div class="row">
+    <div class="col-lg-7 col-lg-offset-2">
+        <table class="table table-striped">
+            <tr>
+                <th>Place</th>
+                <th>Nom</th>
+                <th>Joués</th>
+                <th>Score</th>
+            </tr>
+            <?php
+            $i = 0;
+            /**
+             * @var int $key
+             * @var [int,string] $array
+             */
+            $lastValue = -1;
+            $lastJoue = -1;
+//            foreach ($_equipes[0] as $key => $value):
+            foreach ($_equipes as $key => $value):
+                $i++;
+                ?>
+                <tr>
+                    <td><?php
+                        if($lastValue == $value && $lastJoue >= $_equipes[1][$key])
+                            echo '-';
+                        else
+                            echo $i; ?></td>
+                    <td><?php echo $key ?></td>
+                    <td><?php echo $value["joue"] ?></td>
+                    <td><?php echo $value["score"] ?></td>
+                </tr>
+            <?php
+            $lastValue = $value;
+//            $lastJoue = $_equipes[1][$key];
+            $lastJoue = $value["joue"];
+            endforeach; ?>
+        </table>
+    </div>
+</div>

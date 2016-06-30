@@ -1,0 +1,77 @@
+<?php
+/**
+ * User: corpas
+ * Date: 08/05/16
+ * Time: 21:08
+ */
+/** @var MatchsController $_match */
+$_match = $this;
+$_utilisateur = Access::getInstance()->getCurrentUser();
+$_matchsCollection = $_match->getAllMatch();
+$_equipeCollection = new EquipeCollection();
+$totalMatch = $_equipeCollection->getNumberMatch();
+
+/** Début tableau matchs **/
+?>
+<div style="margin-top: 30px; margin-bottom: 30px;">
+    <div class="row">
+        <div class="col-lg-10 col-lg-offset-1">
+            <div>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation"><a href="" role="tab" data-toggle="tab" id="jour">Journée</a></li>
+                    <?php for($i=1; $i<=$totalMatch; $i++):?>
+                    <li role="presentation" <?php echo ($i==1)?'class="active"':''?>><a href="#ronde<?php echo $i?>" aria-controls="ronde<?php echo $i?>" role="tab" data-toggle="tab"><?php echo $i?></a></li>
+                <?php endfor;?>
+                </ul>
+                <div class="tab-content marginContentTab">
+                <?php for($i=1; $i<=$totalMatch; $i++):?>
+                    <div role="tabpanel" class="tab-pane <?php echo ($i==1)?'in active':''?> marginContentTab fade" id="ronde<?php echo $i ?>">
+                <?php
+                /** @var MatchModel $match */
+                foreach ($_matchsCollection as $match):
+                    /* Récuperer le score du match réel si déjà joué, sinon "-" */
+                    $id = $match->getAttribute('id');
+                    $score = $_match->getScore($match);
+                    $equipe_1 = $_equipeCollection->loadById($match->getAttribute('equipe_id_1'));
+                    $equipe_2 = $_equipeCollection->loadById($match->getAttribute('equipe_id_2'));
+                    $exempt = ($equipe_1->getAttribute('id') == 0 || $equipe_2->getAttribute('id') == 0)?1:0;
+                    $ronde = $match->getAttribute("ronde");
+                    if($ronde == $i): ?>
+                        <form action="<?php echo $_match->getUrlAction('detail'); ?>" method="POST">
+                            <div class="row row_match center marginContentTab">
+                                <div class="row marginBottom" align="center"><?php echo ($exempt==0)?(($match->getAttribute('date')!=null)? 'Semaine '.$match->getAttribute('date'):""):'' ?></div>
+                                <div class="row">
+                                    <div class="col-lg-5 col-md-5 col-sm-5" align="left">
+                                        <img class="flag" src="<?php echo $_match->getUrlImage('/ville/' . $equipe_1->getAttribute('image')) ?>">
+                                        <p class="match"><?php echo $equipe_1->getAttribute('name') ?></p>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2 score">
+                                        <?php if($exempt==0): ?>
+                                        <p class="score_match"><?php echo $score[0] ?> - <?php echo $score[1] ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-5" align="right">
+                                        <p class="match"><?php echo $equipe_2->getAttribute('name') ?></p>
+                                        <img src="<?php echo $_match->getUrlImage('/ville/' . $equipe_2->getAttribute('image'))?>" class="flag">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-offset-5 col-lg-2">
+                                        <input name="matchDetail" type="hidden" value="<?php echo $match->getAttribute('id'); ?>">
+                                        <?php if($exempt==0): ?>
+                                        <input class="btn-primary btn btn-xs btn-style" type="submit" value="feuille de match">
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                <?php
+                    endif;
+                endforeach; ?>
+                    </div>
+            <?php endfor;?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
