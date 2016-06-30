@@ -32,7 +32,8 @@ if (isset($result['user_version'])) {
             'Create Equipe' => 'CREATE TABLE `equipe` (
             `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             `name`	TEXT,
-            `image`	TEXT
+            `image`	TEXT,
+	    `en_cours`  INTEGER
         );',
             'Create Match' => 'CREATE TABLE `match` (
             `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -42,7 +43,7 @@ if (isset($result['user_version'])) {
             `equipe_id_2`	INTEGER NOT NULL,
             `score_equipe_1`	INTEGER,
             `score_equipe_2`	INTEGER,
-            `date`	DATE
+            `date`	INTEGER
         );',
             'Create Simple' => 'CREATE TABLE `simple` (
             `id`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
