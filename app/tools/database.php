@@ -42,7 +42,6 @@ if (isset($result['user_version'])) {
             `equipe_id_2`	INTEGER NOT NULL,
             `score_equipe_1`	INTEGER,
             `score_equipe_2`	INTEGER,
-            `en_cours`	INTEGER,
             `date`	DATE
         );',
             'Create Simple' => 'CREATE TABLE `simple` (
