@@ -45,26 +45,36 @@ class Access
     function __construct()
     {
         $this->_pageAccess = [
-                                'Accueil' => ['connect' => true, 'level' => UtilisateurModel::PRIVILEGE_USER],
-                                'Matchs' => ['connect' => false, 'level' => UtilisateurModel::PRIVILEGE_USER],
-                                'MonProfil' => ['connect' => true, 'level' => UtilisateurModel::PRIVILEGE_USER],
-                                'Classement' => ['connect' => false, 'level' => UtilisateurModel::PRIVILEGE_USER],
-                                'Login' => ['connect' => false, 'level' => null],
-                                'Admin' => ['connect' => true, 'level' => UtilisateurModel::PRIVILEGE_ADMIN],
-                                ];
+            'Accueil' => ['connect' => true, 'level' => UtilisateurModel::PRIVILEGE_USER],
+            'Matchs' => ['connect' => false, 'level' => UtilisateurModel::PRIVILEGE_USER],
+            'MonProfil' => ['connect' => true, 'level' => UtilisateurModel::PRIVILEGE_USER],
+            'Classement' => ['connect' => false, 'level' => UtilisateurModel::PRIVILEGE_USER],
+            'Login' => ['connect' => false, 'level' => null],
+            'Admin' => ['connect' => true, 'level' => UtilisateurModel::PRIVILEGE_ADMIN],
+        ];
     }
 
     public function controlAccess($page) {
         $this->_currentPage = $page;
         if (isset($this->_pageAccess[$page])) {
             if ($this->_pageAccess[$page]['connect'] === true) {
-
                 if (!isset($_SESSION['utilisateur'])) {
                     /** @var LoginController $login */
                     $login = Controller::getController('LoginController');
                     $login->redirect($login);
                     exit;
                 } else {
+                    /**
+                     * @var $utilisateur UtilisateurModel
+                     */
+                    $this->_utilisateur = unserialize($_SESSION['utilisateur']);
+                    if ($this->_utilisateur->getAttribute('privilege') < $this->_pageAccess[$page]['level']) {
+                        $this->pageForbidden();
+                    }
+                }
+            }
+            else{
+                if (isset($_SESSION['utilisateur'])) {
                     /**
                      * @var $utilisateur UtilisateurModel
                      */

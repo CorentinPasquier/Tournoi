@@ -27,7 +27,7 @@ $equipeCollection = new EquipeCollection();
              */
             $lastValue = -1;
             $lastJoue = -1;
-//            foreach ($_equipes[0] as $key => $value):
+            //            foreach ($_equipes[0] as $key => $value):
             foreach ($_equipes as $key => $value):
                 $i++;
                 ?>
@@ -41,10 +41,10 @@ $equipeCollection = new EquipeCollection();
                     <td><?php echo $value["joue"] ?></td>
                     <td><?php echo $value["score"] ?></td>
                 </tr>
-            <?php
-            $lastValue = $value;
+                <?php
+                $lastValue = $value;
 //            $lastJoue = $_equipes[1][$key];
-            $lastJoue = $value["joue"];
+                $lastJoue = $value["joue"];
             endforeach; ?>
         </table>
     </div>

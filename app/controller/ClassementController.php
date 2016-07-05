@@ -24,7 +24,7 @@ class ClassementController extends Controller
         $utilisateurCollection = new UtilisateurCollection();
         return $utilisateurCollection->loadAll();
     }
-    
+
     private function getAllEquipeEnCours() {
         $equipeCollection = new EquipeCollection();
         return $equipeCollection->load(['id' => ['<>', 0], 'en_cours' => ['=', 1]]);
@@ -37,13 +37,13 @@ class ClassementController extends Controller
     private function getScoreUtilisateur($utilisateurId) {
         $pariCollection = new PariCollection();
         $pariCollection->load(['utilisateur_id' => $utilisateurId]);
-        
+
         $score = 0;
         /** @var PariModel $pari */
         foreach ($pariCollection as $pari) {
             $score += $pari->getScore();
         }
-        
+
         return $score;
     }
 
@@ -62,25 +62,21 @@ class ClassementController extends Controller
             if($match->getAttribute('equipe_id_1') == $equipeId)
                 $equipe = 1;
             else if ($match->getAttribute('equipe_id_2') == $equipeId)
-               $equipe = 2;
+                $equipe = 2;
             else
                 $equipe = 0;
             if($equipe != 0) {
                 $scores = $matchController->getScore($match);
-                if ($equipe == 1) {
-                    if ($scores[0] > $scores[1]) {
-                        $score++;
+                if($scores[0] != '' || $scores[1] != '') {
+                    if ($equipe == 1) {
+                        if ($scores[0] > $scores[1]) {
+                            $score++;
+                        }
                         $joue++;
-                    } else if($scores[0] = $scores[1]){
-                        $joue++;
-                    }
-                }
-                else if ($equipe == 2){
-                    if($scores[1] > $scores[0]) {
-                        $score++;
-                        $joue++;
-                    }
-                    else if($scores[0] = $scores[1]){
+                    } else if ($equipe == 2) {
+                        if ($scores[1] > $scores[0]) {
+                            $score++;
+                        }
                         $joue++;
                     }
                 }
@@ -95,24 +91,16 @@ class ClassementController extends Controller
     public function getAllEquipeWithScore() {
         $equipeCollection = $this->getAllEquipeEnCours();
         $array_score = [];
-        $array_joues = [];
-        $score = 0;
         /** @var EquipeModel $equipe */
         foreach ($equipeCollection as $equipe){
             $score = $this->getScoreEquipe($equipe->getAttribute('id'));
             $array_score[$equipe->getAttribute('name')] = $score;
-//            $array_joues[$equipe->getAttribute('name')] = $score[1];
         }
-//        arsort($array_score);
         foreach ($array_score as $key => $row) {
             $return_score[$key]  = $row['score'];
             $return_joue[$key] = $row['joue'];
         }
-
-// Sort the data with volume descending, edition ascending
         array_multisort($return_score, SORT_DESC, $return_joue, SORT_ASC, $array_score);
-//        array_multisort($array_score, 'cmp');
-//        return [$array_score, $array_joues];
         return $array_score;
     }
 
