@@ -34,7 +34,10 @@ $(document).ready(function(){
                     '<input class="form-control btn-xs first" id="scoreS3_1[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_3_1]">' +
                     '<input class="form-control btn-xs second" id="scoreS3_2[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_3_2]">' +
                 '</div>' +
-                '<div class="col-lg-2">' +
+                '<div class="col-lg-1">' +
+                    '<p class="score_binaire">' + idSimple + '</p>' +
+                '</div>' +
+                '<div class="col-lg-1">' +
                     '<button class="btn btn-default red" type="button" data-idS="' + idSimple + '">-</button>' +
                 '</div>' +
             '</div>');
@@ -67,7 +70,10 @@ $(document).ready(function(){
                     '<input class="form-control btn-xs first" id="scoreD3_1[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_3_1]">' +
                     '<input class="form-control btn-xs second" id="scoreD3_2[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_3_2]">' +
                 '</div>' +
-                '<div class="col-lg-2">' +
+                '<div class="col-lg-1">' +
+                    '<p class="score_binaire">' + idDouble + '"</p>' +
+                '</div>' +
+                '<div class="col-lg-1">' +
                     '<button class="btn btn-default red" type="button" data-idD="' + idDouble + '">-</button>' +
                 '</div>' +
             '</div>');
@@ -164,6 +170,7 @@ $(document).ready(function(){
         var score1 = 0;
         var score2 = 0;
         scores.each(function () {
+            $(this).children().first().next().next().first().next().next().next().children().html("");
             var children = $(this).children().first().next().next().first().children().first();
             if(children.val() != "" && children.next().val() != "") {
                 if (parseInt(children.val()) > parseInt(children.next().val())) {
@@ -180,6 +187,12 @@ $(document).ready(function(){
                     else {
                         score += -1;
                     }
+                    if(score > 0) {
+                        $(this).children().first().next().next().first().next().next().next().children().html("1-0");
+                    }
+                    else if (score < 0) {
+                        $(this).children().first().next().next().first().next().next().next().children().html("0-1");
+                    }
                     if (score == 0) {
                         children = $(this).children().first().next().next().first().next().next().children().first();
                         if(children.val() != "" && children.next().val() != "") {
@@ -188,6 +201,12 @@ $(document).ready(function(){
                             }
                             else {
                                 score += -1;
+                            }
+                            if(score > 0) {
+                                $(this).children().first().next().next().first().next().next().next().children().html("1-0");
+                            }
+                            else if (score < 0) {
+                                $(this).children().first().next().next().first().next().next().next().children().html("0-1");
                             }
                         }
                     }

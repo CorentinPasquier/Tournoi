@@ -64,7 +64,10 @@ $equipe = new EquipeCollection();
                             <input class="form-control btn-xs first" id="scoreS3_1[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_3_1') ?>" name="scoreS[<?php echo $i ?>][match_3_1]">
                             <input class="form-control btn-xs second" id="scoreS3_2[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_3_2') ?>" name="scoreS[<?php echo $i ?>][match_3_2]">
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
+                            <p class="score_binaire"></p>
+                        </div>
+                        <div class="col-lg-1">
                             <button class="btn btn-default red" type="button" data-idS="<?php echo $i ?>">-</button>
                         </div>
                         <input type="hidden" name="databaseIdS[<?php echo $i ?>]" value="<?php echo $simple->getAttribute('id')?>"> <!--// AJOUTER AU JS-->
@@ -107,7 +110,10 @@ $equipe = new EquipeCollection();
                             <input class="form-control btn-xs first" id="scoreD3_1[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_3_1') ?>" name="scoreD[<?php echo $i ?>][match_3_1]">
                             <input class="form-control btn-xs second" id="scoreD3_2[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_3_2') ?>" name="scoreD[<?php echo $i ?>][match_3_2]">
                         </div>
-                        <div class="col-lg-2">
+                        <div class="col-lg-1">
+                            <p class="score_binaire"></p>
+                        </div>
+                        <div class="col-lg-1">
                             <button class="btn btn-default red" type="button" data-idD="<?php echo $i ?>">-</button>
                         </div>
                         <input type="hidden" name="databaseIdD[<?php echo $i ?>]" value="<?php echo $double->getAttribute('id')?>">

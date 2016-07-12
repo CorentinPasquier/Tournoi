@@ -301,3 +301,8 @@ p.match{
     border: 1px solid gray;
     margin: 1px;
 }
+
+.score_binaire {
+    font-family: monospace;
+    font-size: x-large;
+}
