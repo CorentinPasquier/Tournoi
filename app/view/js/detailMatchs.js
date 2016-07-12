@@ -35,7 +35,7 @@ $(document).ready(function(){
                     '<input class="form-control btn-xs second" id="scoreS3_2[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_3_2]">' +
                 '</div>' +
                 '<div class="col-lg-1">' +
-                    '<p class="score_binaire">' + idSimple + '</p>' +
+                    '<p class="score_binaire"></p>' +
                 '</div>' +
                 '<div class="col-lg-1">' +
                     '<button class="btn btn-default red" type="button" data-idS="' + idSimple + '">-</button>' +
@@ -71,7 +71,7 @@ $(document).ready(function(){
                     '<input class="form-control btn-xs second" id="scoreD3_2[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_3_2]">' +
                 '</div>' +
                 '<div class="col-lg-1">' +
-                    '<p class="score_binaire">' + idDouble + '"</p>' +
+                    '<p class="score_binaire"></p>' +
                 '</div>' +
                 '<div class="col-lg-1">' +
                     '<button class="btn btn-default red" type="button" data-idD="' + idDouble + '">-</button>' +
