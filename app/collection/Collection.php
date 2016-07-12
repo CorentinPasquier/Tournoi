@@ -38,7 +38,7 @@ abstract class Collection implements Iterator
      * Instance of SQLite
      * @var SQLite
      */
-    private $_db;
+    protected $_db;
 
     /**
      * Possition in array for iterator

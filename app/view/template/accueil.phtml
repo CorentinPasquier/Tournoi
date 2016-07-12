@@ -7,12 +7,57 @@
  */
 /** @var AccueilController $_accueil */
 $_accueil = $this;
+$_utilisateur = Access::getInstance()->getCurrentUser();
+$default_team = $_utilisateur->getAttribute('equipe_default');
+$_matchsCollection = $_accueil->getAllMatchByTeam($default_team);
+$_equipeCollection = $_accueil->getAllEquipe();
 ?>
-<div class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
-    <h3>Bienvienue sur le site du tournoi inter club loisir de Badminton Vendéen édition 2016/2017</h3>
-    <!--<p></p>-->
-    <ul>
-        <li><a href="Matchs">Journées et feuilles de match</a></li>
-        <li><a href="Classement">Classement</a></li>
-    </ul>
-</div>
+<div style="margin-top: 30px; margin-bottom: 30px;">
+    <div class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
+        <h3>Bienvenue sur le site du tournoi inter club de Badminton de Vendée !</h3>
+        <h4>Vous pouvez trouver ci-dssous le calendrier de votre club : <?php echo $_equipeCollection->loadById($default_team)->getAttribute('name') ?></h4>
+    </div>
+    <div style="margin-top: 20px;" class="row">
+            <div class="col-lg-10 col-lg-offset-1">
+<?php
+foreach ($_matchsCollection as $match):
+    /* Récuperer le score du match réel si déjà joué, sinon "-" */
+    $id = $match->getAttribute('id');
+    $score = $_accueil->getScore($match);
+    $equipe_1 = $_equipeCollection->loadById($match->getAttribute('equipe_id_1'));
+    $equipe_2 = $_equipeCollection->loadById($match->getAttribute('equipe_id_2'));
+    $exempt = ($equipe_1->getAttribute('id') == 0 || $equipe_2->getAttribute('id') == 0)?1:0;
+    $ronde = $match->getAttribute("ronde");?>
+    <form action="<?php echo $_accueil->getUrlActionRedirect('Matchs', 'detail') ?>" method="POST">
+        <div class="row row_match center marginContentTab">
+            <div class="row marginBottom" align="center"><?php echo ($exempt==0)?(($match->getAttribute('date')!=null)? 'Semaine '.$match->getAttribute('date'):""):'' ?></div>
+            <div class="row">
+                <div class="col-lg-5 col-md-5 col-sm-5" align="left">
+                    <img class="flag" src="<?php echo $_accueil->getUrlImage('/ville/' . $equipe_1->getAttribute('image')) ?>">
+                    <button type="button" class="btn btn-default match" data-toggle="tooltip" data-placement="right" title="<?php echo $_accueil->getInfoTeam($equipe_1->getAttribute('id')) ?>"><?php echo $equipe_1->getAttribute('name') ?></button>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 score">
+                    <?php if($exempt==0): ?>
+                        <p class="score_match"><?php echo $score[0] ?> - <?php echo $score[1] ?></p>
+                    <?php endif; ?>
+                </div>
+                <div class="col-lg-5 col-md-5 col-sm-5" align="right">
+                    <button type="button" class="btn btn-default match" data-toggle="tooltip" data-placement="right" title="<?php echo $_accueil->getInfoTeam($equipe_2->getAttribute('id')) ?>"><?php echo $equipe_2->getAttribute('name') ?></button>
+                    <img src="<?php echo $_accueil->getUrlImage('/ville/' . $equipe_2->getAttribute('image'))?>" class="flag">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-offset-5 col-lg-2">
+                    <input name="matchDetail" type="hidden" value="<?php echo $match->getAttribute('id'); ?>">
+                    <?php if($exempt==0 && $_utilisateur != NULL): ?>
+                        <input class="btn-primary btn btn-xs btn-style" type="submit" value="feuille de match">
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </form>
+<?php
+endforeach; ?>
+                </div>
+        </div>
+    </div>

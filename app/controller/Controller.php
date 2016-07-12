@@ -174,6 +174,10 @@ class Controller
     public function getUrlAction($action) {
         return $this->getUrl().'/'.$action;
     }
+    
+    public function getUrlActionRedirect($controller, $action) {
+        return $controller.'/'.$action;
+    }
 
     /**
      * @param $template string

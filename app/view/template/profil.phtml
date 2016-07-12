@@ -38,6 +38,11 @@ $_utilisateur = $_profil->getUtilisateur();
                     </div>
 
                     <div class="form-group">
+                        <label for="telephone">Telephone</label>
+                        <input type="text" class="form-control" id="telephone" placeholder="Telephone" name="telephone" value="<?php echo $_utilisateur->getAttribute('telephone'); ?>">
+                    </div>
+
+                    <div class="form-group">
                         <label for="password">Mot de passe</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Mot de passe">
                     </div>

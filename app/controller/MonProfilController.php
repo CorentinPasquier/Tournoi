@@ -34,6 +34,7 @@ class MonProfilController extends Controller
             
             $utilisateur->setAttribute('login', $post['login']);
             $utilisateur->setAttribute('email', $post['email']);
+            $utilisateur->setAttribute('telephone', $post['telephone']);
             $utilisateur->setAttribute('lastName', $post['lastName']);
             $utilisateur->setAttribute('firstName', $post['firstName']);
 

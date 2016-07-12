@@ -25,6 +25,7 @@ if (isset($result['user_version'])) {
             `login`	TEXT NOT NULL UNIQUE,
             `firstName`	TEXT,
             `lastName`	TEXT,
+            `telephone`	TEXT,
             `password`	TEXT NOT NULL,
             `email`	TEXT NOT NULL UNIQUE,
             `privilege`	INTEGER NOT NULL DEFAULT -1
@@ -92,6 +93,11 @@ if (isset($result['user_version'])) {
                 , (\'Chauche\', \'Chauche.jpg\')
                 ',
         ];
+    }
+    
+    if($result[('user_version')] < 2){
+        
+        $queries['Alter User'] = 'ALTER TABLE utilisateur ADD equipe_default INTEGER';
     }
 }
 
