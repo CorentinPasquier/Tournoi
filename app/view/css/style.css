@@ -291,3 +291,13 @@ p.match{
 #jour{
     pointer-events: none;
 }
+
+.first {
+    border: 1px solid cornflowerblue;
+    margin: 1px;
+}
+
+.second {
+    border: 1px solid gray;
+    margin: 1px;
+}
