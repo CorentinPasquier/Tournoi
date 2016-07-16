@@ -17,10 +17,12 @@ $(document).ready(function(){
         $('#simplediv').append('' +
             '<div style="margin-bottom: 4px;" class="row" align="center" id="simple[' + idSimple + ']">' +
                 '<div class="col-lg-2 col-sm-5">' +
-                    '<input placeholder="Joueur 1" class="form-control form-control2 first" id="joueurS1[' + idSimple + ']" type="text" value="" name="joueurS[' + idSimple + '][joueur_1]">' +
+                    '<select id="joueurS1[' + idSimple +']" name="joueurS[' + idSimple + '][joueur_1]" class="form-control form-control2 first" title="joueur">' +
+                    getSelect(1) +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-5">' +
-                    '<input placeholder="Joueur 2" class="form-control form-control2 second" id="joueurS2[' + idSimple + ']" type="text" value="" name="joueurS[' + idSimple + '][joueur_2]">' +
+                    '<select id="joueurS2[' + idSimple +']" name="joueurS[' + idSimple + '][joueur_2]" class="form-control form-control2 second" title="joueur">' +
+                    getSelect(2) +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-10">' +
                     '<input class="form-control first" id="scoreS1_1[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_1_1]">' +
@@ -49,14 +51,18 @@ $(document).ready(function(){
     $('#addDouble').on('click', function () {
         idDouble = idDouble +1;
         $('#doublediv').append('' +
-            '<div style="margin-bottom: 4px;" class="row" align="center" id="double[' + idDouble + ']">' +
+            '<div style="margin-bottom: 5px;" class="row" align="center" id="double[' + idDouble + ']">' +
                 '<div class="col-lg-2 col-sm-5">' +
-                    '<input placeholder="Joueur 1 - Equipe 1" class="form-control form-control2 first" id="joueurD1_1[' + idDouble + ']" type="text" value="" name="joueurD[' + idDouble + '][joueur_1_1]">' +
-                    '<input placeholder="Joueur 2 - Equipe 1" class="form-control form-control2 first" id="joueurD2_1[' + idDouble + ']" type="text" value="" name="joueurD[' + idDouble + '][joueur_2_1]">' +
+                    '<select title="double1_1" class="form-control form-control2 first" id="joueurD1_1[' + idDouble + ']" name="joueurD[' + idDouble + '][joueur_1_1]">' +
+                    getSelect(1) +
+                    '<select title="double1_2" class="form-control form-control2 first" id="joueurD2_1[' + idDouble + ']" name="joueurD[' + idDouble + '][joueur_1_2]">' +
+                    getSelect(1) +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-5">' +
-                    '<input placeholder="Joueur 1 - Equipe 2" class="form-control form-control2 second" id="joueurD1_2[' + idDouble + ']" type="text" value="" name="joueurD[' + idDouble + '][joueur_1_2]">' +
-                    '<input placeholder="Joueur 2 - Equipe 2" class="form-control form-control2 second" id="joueurD2_2[' + idDouble + ']" type="text" value="" name="joueurD[' + idDouble + '][joueur_2_2]">' +
+                    '<select title="double2_1" class="form-control form-control2 second" id="joueurD1_2[' + idDouble + ']" name="joueurD[' + idDouble + '][joueur_2_1]">' +
+                    getSelect(2) +
+                    '<select title="double2_2" class="form-control form-control2 second" id="joueurD2_2[' + idDouble + ']" name="joueurD[' + idDouble + '][joueur_2_2]">' +
+                    getSelect(2) +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-10">' +
                     '<input class="form-control first" id="scoreD1_1[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_1_1]">' +
@@ -221,6 +227,10 @@ $(document).ready(function(){
         });
         scoreE1.html(score1);
         scoreE2.html(score2);
+    }
+    
+    function getSelect(id) {
+        return $('.team'+id).html().substr(34);
     }
 
     // $('#jour').on('click', function () {

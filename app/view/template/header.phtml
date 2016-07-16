@@ -18,6 +18,8 @@ $_monProfil = Controller::getController('MonProfilController');
 $_admin = Controller::getController('AdminController');
 /** @var LoginController $_login */
 $_login = Controller::getController('LoginController');
+/** @var ListJoueurController $_listJoueur */
+$_listJoueur = Controller::getController('ListJoueurController');
 ?>
 <header>
     <nav class="navbar navbar-default">
@@ -37,6 +39,7 @@ $_login = Controller::getController('LoginController');
                     <li class="<?php echo ($_access->isActivePage($_classement->getPage()))?'active':''; ?>"><a href="<?php echo $_classement->getUrl(); ?>">Classement</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li class="<?php echo ($_access->isActivePage($_listJoueur->getPage()))?'active':''; ?>"><a href="<?php echo $_listJoueur->getUrl(); ?>">Joueurs</a></li>
                     <?php // echo $_access->getCurrentUser()->getAttribute('login'); ?>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <span class="caret"></span></a>

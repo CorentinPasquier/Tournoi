@@ -128,7 +128,6 @@ class MatchsController extends Controller
                 if(($key = array_search($post['databaseIdS'][$id], $_allSimple)) !== false) {
                     unset($_allSimple[$key]);
                 }
-
             }
             $simple->setAttribute('match', $post['match']);
             $simple->setAttribute('joueur_1', $joueur['joueur_1']);
@@ -190,5 +189,11 @@ class MatchsController extends Controller
             $messages = new MessageManager();
             $messages->newMessage('Un problème est survenu, tous vos matchs n\'ont pas été enregistrés correctement.', Message::LEVEL_ERROR);
         }
+        $this->redirect('/');
+    }
+
+    public function getListJoueurByTeam($equipe) {
+        $_joueurCollection = new JoueurCollection();
+        return $_joueurCollection->load(['team' => ['=', $equipe], 'visible' => ['=', '1']], ['name' => Collection::SORT_ASC]);
     }
 }

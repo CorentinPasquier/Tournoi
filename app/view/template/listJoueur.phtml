@@ -1,0 +1,52 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: corentin
+ * Date: 16/07/16
+ * Time: 11:04
+ */
+
+
+/** @var ListJoueurController $_listJoueur */
+$_listJoueur = $this;
+$_utilisateur = Access::getInstance()->getCurrentUser();
+$default_team = $_utilisateur->getAttribute('equipe_default');
+$_list_joueur = $_listJoueur->getListJoueurByTeam($default_team);
+?>
+
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php /** @var JoueurModel $joueur */ ?>
+<?php foreach ($_list_joueur as $joueur): ?>
+    <tr>
+        <td><?php echo $joueur->getAttribute('name'); ?></td>
+        <td>
+            <a href="<?php echo $_listJoueur->getUrlAction('deleteUser?id='.$joueur->getAttribute('id')); ?>"><span class="glyphicon glyphicon-remove text-danger"></span></a>
+        </td>
+    </tr>
+<?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <form action="<?php echo $_listJoueur->getUrlAction('newPlayer') ?>" method="post">
+            <div class="form-group">
+                <h6>* Pour ajouter plusieurs joueur, mettez un ' ; ' à la fin de chaque joueur</h6>
+                <input type="hidden" name="team" title="team" value="<?php echo $default_team ?>">
+                <input class="form-control" type="text" name="joueur[0]" id="newJoueur" title="newJoueur">
+            </div>
+            <button class="btn btn-default" type="submit">Ajouter</button>
+        </form>
+    </div>
+</div>
+

@@ -125,4 +125,10 @@ Abstract class Model
 
         return $stmt->execute() !== false;
     }
+    
+    public function hide() {
+        $query = "UPDATE {$this->_table} SET visible=0";
+        $stmt = $this->_db->prepareQuery($query,[]);
+        return $stmt->execute() !== false;
+    }
 }

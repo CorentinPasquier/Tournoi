@@ -99,6 +99,16 @@ if (isset($result['user_version'])) {
         
         $queries['Alter User'] = 'ALTER TABLE utilisateur ADD equipe_default INTEGER';
     }
+    
+    if($result[('user_version')] < 3){
+        
+        $queries['Create Joueur'] = 'CREATE TABLE `joueur` (
+                `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                `name` TEXT,
+                `team` INTEGER,
+                `visible` INTEGER
+                )';
+    }
 }
 
 $_error = false;

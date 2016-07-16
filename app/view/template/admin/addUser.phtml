@@ -8,6 +8,7 @@
 /** @var AdminController $_admin */
 $_admin = $this;
 $_newUser = $_admin->getNewUser();
+$_equipes = $_admin->getAllEquipe();
 ?>
 <div class="row">
     <div class="col-lg-4 col-lg-offset-4 col-md-8 col-md-offset-2">
@@ -56,6 +57,16 @@ $_newUser = $_admin->getNewUser();
                     <div class="form-group">
                         <label for="password2">Confirmer mot de passe *</label>
                         <input type="password" class="form-control" id="password2" name="password2"placeholder="Confirmer mot de passe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="equipe">Equipe *</label>
+                        <select class="form-control" id="equipe" name="equipe" required>
+                            <?php /** @var EquipeModel $equipe */
+                                foreach ($_equipes as $equipe): ?>
+                                <option value="<?php echo $equipe->getAttribute('id') ?>"><?php echo $equipe->getAttribute('name')?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
 
                     <button type="submit" class="btn btn-default">Enregistrer</button>

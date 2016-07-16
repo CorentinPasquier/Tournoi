@@ -17,7 +17,30 @@ $_doubleCollection = new DoubleCollection();
 $_allSimple = $_simpleCollection->load(["match" => ["=", $idMatch]]);
 $_allDouble = $_doubleCollection->load(["match" => ["=", $idMatch]]);
 $equipe = new EquipeCollection();
+$joueurs_1 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_1'));
+$joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
 ?>
+
+<div style="display: none;">
+    <div class="team1">
+        <select title="team1">
+            <option value="0"></option>
+        <?php /** @var JoueurModel $joueur */
+        foreach ($joueurs_1 as $joueur) : ?>
+            <option value="<?php echo $joueur->getAttribute('id') ?>"><?php echo $joueur->getAttribute('name') ?></option>
+        <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="team2">
+        <select title="team2">
+            <option value="0"></option>
+            <?php /** @var JoueurModel $joueur */
+            foreach ($joueurs_2 as $joueur) : ?>
+                <option value="<?php echo $joueur->getAttribute('id') ?>"><?php echo $joueur->getAttribute('name') ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+</div>
 
 <div>
     <form class="form-horizontal" method="post" action="saveDetail">
@@ -47,10 +70,22 @@ $equipe = new EquipeCollection();
                     $i++?>
                     <div style="margin-bottom: 4px;" class="row" align="center" id="simple[<?php echo $i ?>]">
                         <div class="col-lg-2 col-sm-5">
-                            <input class="form-control form-control2 first" id="joueurS1[<?php echo $i ?>]" type="text" value="<?php echo $simple->getAttribute('joueur_1') ?>" name="joueurS[<?php echo $i ?>][joueur_1]">
+                            <select id="joueurS1[<?php echo $i ?>]" name="joueurS[<?php echo $i ?>][joueur_1]" class="form-control form-control2 first" title="joueur">
+                                <option value="0"></option>
+                                <?php /** @var JoueurModel $joueur */
+                                foreach ($joueurs_1 as $joueur) : ?>
+                                <option value="<?php echo $joueur->getAttribute('id') ?>" <?php echo $simple->getAttribute('joueur_1')==$joueur->getAttribute('id')?'selected':'' ?>><?php echo $joueur->getAttribute('name') ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="col-lg-2 col-sm-5">
-                            <input class="form-control form-control2 second" id="joueurS2[<?php echo $i ?>]" type="text" value="<?php echo $simple->getAttribute('joueur_2') ?>" name="joueurS[<?php echo $i ?>][joueur_2]">
+                            <select id="joueurS2[<?php echo $i ?>]" name="joueurS[<?php echo $i ?>][joueur_2]" class="form-control form-control2 second" title="joueur">
+                                <option value="0"></option>
+                                <?php /** @var JoueurModel $joueur */
+                                foreach ($joueurs_2 as $joueur) : ?>
+                                    <option value="<?php echo $joueur->getAttribute('id') ?>" <?php echo $simple->getAttribute('joueur_2')==$joueur->getAttribute('id')?'selected':'' ?>><?php echo $joueur->getAttribute('name') ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="col-lg-2 col-sm-10">
                             <input class="form-control first" id="scoreS1_1[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_1_1') ?>" name="scoreS[<?php echo $i ?>][match_1_1]">
@@ -89,14 +124,38 @@ $equipe = new EquipeCollection();
                 /** @var DoubleModel $double */
                 foreach ($_allDouble as $double):
                     $i++;?>
-                    <div class="row" align="center" id="double[<?php echo $i ?>]">
+                    <div class="row marginBtm" align="center" id="double[<?php echo $i ?>]">
                         <div class="col-lg-2 col-sm-5">
-                            <input class="form-control form-control2 first" id="joueurD1_1[<?php echo $i ?>]" type="text" value="<?php echo $double->getAttribute('joueur_1_1') ?>" name="joueurD[<?php echo $i ?>][joueur_1_1]">
-                            <input class="form-control form-control2 first" id="joueurD2_1[<?php echo $i ?>]" type="text" value="<?php echo $double->getAttribute('joueur_1_2') ?>" name="joueurD[<?php echo $i ?>][joueur_1_2]">
+                            <select title="double1_1" class="form-control form-control2 first" id="joueurD1_1[<?php echo $i ?>]" name="joueurD[<?php echo $i ?>][joueur_1_1]">
+                                <option value="0"></option>
+                            <?php /** @var JoueurModel $joueur */
+                            foreach ($joueurs_1 as $joueur) : ?>
+                                <option value="<?php echo $joueur->getAttribute('id') ?>" <?php echo $double->getAttribute('joueur_1_1')==$joueur->getAttribute('id')?'selected':'' ?>><?php echo $joueur->getAttribute('name') ?></option>
+                            <?php endforeach; ?>
+                            </select>
+                            <select title="double1_2" class="form-control form-control2 first" id="joueurD2_1[<?php echo $i ?>]" name="joueurD[<?php echo $i ?>][joueur_1_2]">
+                                <option value="0"></option>
+                            <?php /** @var JoueurModel $joueur */
+                            foreach ($joueurs_1 as $joueur) : ?>
+                                <option value="<?php echo $joueur->getAttribute('id') ?>" <?php echo $double->getAttribute('joueur_1_2')==$joueur->getAttribute('id')?'selected':'' ?>><?php echo $joueur->getAttribute('name') ?></option>
+                            <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="col-lg-2 col-sm-5">
-                            <input class="form-control form-control2 second" id="joueurD1_2[<?php echo $i ?>]" type="text" value="<?php echo $double->getAttribute('joueur_2_1') ?>" name="joueurD[<?php echo $i ?>][joueur_2_1]">
-                            <input class="form-control form-control2 second" id="joueurD2_2[<?php echo $i ?>]" type="text" value="<?php echo $double->getAttribute('joueur_2_2') ?>" name="joueurD[<?php echo $i ?>][joueur_2_2]">
+                            <select title="double2_1" class="form-control form-control2 second" id="joueurD1_2[<?php echo $i ?>]" name="joueurD[<?php echo $i ?>][joueur_2_1]">
+                                <option value="0"></option>
+                                <?php /** @var JoueurModel $joueur */
+                                foreach ($joueurs_2 as $joueur) : ?>
+                                    <option value="<?php echo $joueur->getAttribute('id') ?>" <?php echo $double->getAttribute('joueur_2_1')==$joueur->getAttribute('id')?'selected':'' ?>><?php echo $joueur->getAttribute('name') ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <select title="double2_2" class="form-control form-control2 second" id="joueurD2_2[<?php echo $i ?>]" name="joueurD[<?php echo $i ?>][joueur_2_2]">
+                                <option value="0"></option>
+                                <?php /** @var JoueurModel $joueur */
+                                foreach ($joueurs_2 as $joueur) : ?>
+                                    <option value="<?php echo $joueur->getAttribute('id') ?>" <?php echo $double->getAttribute('joueur_2_2')==$joueur->getAttribute('id')?'selected':'' ?>><?php echo $joueur->getAttribute('name') ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                         <div class="col-lg-2 col-sm-10">
                             <input class="form-control first" id="scoreD1_1[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_1_1') ?>" name="scoreD[<?php echo $i ?>][match_1_1]">

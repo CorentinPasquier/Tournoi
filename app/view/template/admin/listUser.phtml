@@ -9,12 +9,14 @@
 $_admin = $this;
 $_utilisteurs = $_admin->getAllUser();
 $_currentUtilistateur = Access::getInstance()->getCurrentUser();
+/** @var EquipeCollection $_equipes */
+$_equipes = $_admin->getAllEquipe();
 ?>
 <div class="row">
     <div class="col-md-3 col-md-offset-9">
         <a href="<?php echo $_admin->getUrlAction('newUser'); ?>" class="btn btn-primary btn-lg btn-block">Ajouter un utilisateur</a>
     </div>
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-lg-8 col-lg-offset-2">
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -22,16 +24,21 @@ $_currentUtilistateur = Access::getInstance()->getCurrentUser();
                     <th>Nom</th>
                     <th>Prénom</th>
                     <th>Email</th>
+                    <th>Equipe</th>
                 </tr>
             </thead>
             <tbody>
                 <?php /** @var UtilisateurModel $utilisteur */ ?>
-                <?php foreach ($_utilisteurs as $utilisteur): ?>
+                <?php foreach ($_utilisteurs as $utilisteur):
+                        /** @var EquipeModel $_equipe */
+                        $_equipe = $_equipes->loadById($utilisteur->getAttribute('equipe_default'));
+                    ?>
                 <tr>
                    <td><?php echo $utilisteur->getAttribute('login'); ?></td>
                    <td><?php echo $utilisteur->getAttribute('lastName'); ?></td>
                    <td><?php echo $utilisteur->getAttribute('firstName'); ?></td>
                    <td><?php echo $utilisteur->getAttribute('email'); ?></td>
+                   <td><?php echo $_equipe!=null?$_equipe->getAttribute('name'):'' ?></td>
                     <td>
                         <a href="<?php echo $_admin->getUrlAction('newUser?id='.$utilisteur->getAttribute('id')); ?>"><span class="glyphicon glyphicon-pencil"></span></a>
                     </td>

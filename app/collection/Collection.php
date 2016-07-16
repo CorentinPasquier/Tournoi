@@ -69,7 +69,6 @@ abstract class Collection implements Iterator
         $stmt = $this->_db->prepareQuery($query, $attributes);
         $results = $stmt->execute();
         unset($this->_rows);
-
         while ($result = $results->fetchArray(SQLITE3_ASSOC)) {
             /**
              * @var $model Model

@@ -17,34 +17,9 @@ class ClassementController extends Controller
         $this->setTemplate('/classement.phtml');
     }
 
-    /**
-     * @return UtilisateurCollection
-     */
-    private function getAllUtilisateur() {
-        $utilisateurCollection = new UtilisateurCollection();
-        return $utilisateurCollection->loadAll();
-    }
-
     private function getAllEquipeEnCours() {
         $equipeCollection = new EquipeCollection();
         return $equipeCollection->load(['id' => ['<>', 0], 'en_cours' => ['=', 1]]);
-    }
-
-    /**
-     * @param $utilisateurId
-     * @return int
-     */
-    private function getScoreUtilisateur($utilisateurId) {
-        $pariCollection = new PariCollection();
-        $pariCollection->load(['utilisateur_id' => $utilisateurId]);
-
-        $score = 0;
-        /** @var PariModel $pari */
-        foreach ($pariCollection as $pari) {
-            $score += $pari->getScore();
-        }
-
-        return $score;
     }
 
     /**

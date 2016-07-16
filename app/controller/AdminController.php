@@ -164,6 +164,7 @@ class AdminController extends Controller
             $utilisateur->setAttribute('email', $post['email']);
             $utilisateur->setAttribute('lastName', $post['lastName']);
             $utilisateur->setAttribute('firstName', $post['firstName']);
+            $utilisateur->setAttribute('equipe_default', $post['equipe']);
             $utilisateur->setAttribute('privilege', self::DEFAULT_PRIVILEGE);
 
             if (!empty($post['password'])
@@ -290,12 +291,12 @@ class AdminController extends Controller
             /** @var UtilisateurModel $utilisateur */
             $utilisateur = (new UtilisateurCollection())->loadById($get['id']);
 
-            if ($utilisateur->remove()) {
+            if ($utilisateur->hide()) {
                 $messages = new MessageManager();
-                $messages->newMessage('L\'utilisateur a été correctement supprimé', Message::LEVEL_SUCCESS);
+                $messages->newMessage('Le joueur a été correctement supprimé', Message::LEVEL_SUCCESS);
             } else {
                 $messages = new MessageManager();
-                $messages->newMessage('L\'utilisateur n\'a pas été correctement supprimé', Message::LEVEL_ERROR);
+                $messages->newMessage('Le joueur n\'a pas été correctement supprimé', Message::LEVEL_ERROR);
             }
         }
 

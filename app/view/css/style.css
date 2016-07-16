@@ -258,6 +258,10 @@ p.match{
     margin-bottom: -10px;
 }
 
+.marginBtm {
+    margin-bottom: 5px;
+}
+
 .hidden{
     display: none;
 }
