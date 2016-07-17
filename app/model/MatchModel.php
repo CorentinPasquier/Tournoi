@@ -57,4 +57,25 @@ class MatchModel extends Model
             return '-';
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDate() {
+        $week = $this->getAttribute('date');
+        if($week != null) {
+            $year = date("Y");
+            $time = strtotime("1 January $year", time());
+            $day = date('w', $time);
+            $time += ((7 * $week) + 1 - $day) * 24 * 3600;
+            $return[0] = date('d-m-Y', $time);
+            $time += 13 * 24 * 3600;
+            $return[1] = date('d-m-Y', $time);
+        }
+        else {
+            $return[0] = "";
+            $return[1] = "";
+        }
+        return $return;
+    }
 }

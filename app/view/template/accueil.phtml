@@ -20,6 +20,7 @@ $_equipeCollection = $_accueil->getAllEquipe();
     <div style="margin-top: 20px;" class="row">
             <div class="col-lg-10 col-lg-offset-1">
 <?php
+/** @var MatchModel $match */
 foreach ($_matchsCollection as $match):
     /* Récuperer le score du match réel si déjà joué, sinon "-" */
     $id = $match->getAttribute('id');
@@ -27,10 +28,11 @@ foreach ($_matchsCollection as $match):
     $equipe_1 = $_equipeCollection->loadById($match->getAttribute('equipe_id_1'));
     $equipe_2 = $_equipeCollection->loadById($match->getAttribute('equipe_id_2'));
     $exempt = ($equipe_1->getAttribute('id') == 0 || $equipe_2->getAttribute('id') == 0)?1:0;
-    $ronde = $match->getAttribute("ronde");?>
+    $ronde = $match->getAttribute("ronde");
+    $date = $match->getDate();?>
     <form action="<?php echo $_accueil->getUrlActionRedirect('Matchs', 'detail') ?>" method="POST">
         <div class="row row_match center marginContentTab">
-            <div class="row marginBottom" align="center"><?php echo ($exempt==0)?(($match->getAttribute('date')!=null)? 'Semaine '.$match->getAttribute('date'):""):'' ?></div>
+            <div class="row marginBottom" align="center"><?php echo ($exempt==0)?($date[0] . " - " . $date[1]):'' ?></div>
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-5" align="left">
                     <img class="flag" src="<?php echo $_accueil->getUrlImage('/ville/' . $equipe_1->getAttribute('image')) ?>">
