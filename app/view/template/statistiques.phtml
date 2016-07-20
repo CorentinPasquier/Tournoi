@@ -1,0 +1,95 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: corentin
+ * Date: 19/07/16
+ * Time: 21:19
+ */
+
+/** @var StatistiquesController $_statistiques */
+$_statistiques = $this;
+
+$limit = 2;
+
+$winLoseSimpleDom = $_statistiques->getWinLoseSimpleDom(true);
+$winLoseSimpleExt = $_statistiques->getWinLoseSimpleExt(true);
+$winLoseSimpleAll = $_statistiques->getWinLoseSimpleAll($_statistiques->getWinLoseSimpleDom(), $_statistiques->getWinLoseSimpleExt());
+$highestPointSimple = $_statistiques->getHighestPointSimple(true);
+
+?>
+<div align="center">
+    <h2>En construction ...</h2>
+    <ul>
+        <?php if(sizeof($winLoseSimpleAll) >= $limit): ?>
+        <li class="marginBtmBig"><h4>Classement des joueurs en simple (victoire / matchs joués)</h4>
+            <ul>
+<?php
+$i = 0;
+foreach ($winLoseSimpleAll as $key => $value) {
+    if($i > 2) {
+        break;
+    }
+    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']}% victoire en simple ({$value['win']}/{$value['total']})</li>";
+    $i++;
+}
+
+?>
+            </ul>
+        </li>
+        <?php endif;
+        if(sizeof($winLoseSimpleDom) >= $limit):
+        ?>
+        <li class="marginBtmBig"><h4>Classement des joueurs en simple à domicile (victoire / matchs joués)</h4>
+            <ul>
+<?php
+$i = 0;
+foreach ($winLoseSimpleDom as $key => $value) {
+    if($i > 2) {
+        break;
+    }
+    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']}% victoire en simple à domicile ({$value['win']}/{$value['total']})</li>";
+    $i++;
+}
+
+?>
+            </ul>
+        </li>
+        <?php endif;
+        if(sizeof($winLoseSimpleExt) >= $limit):
+        ?>
+        <li class="marginBtmBig"><h4>Classement des joueurs en simple à l'extérieur (victoire / matchs joués)</h4>
+            <ul>
+<?php
+
+$i = 0;
+foreach ($winLoseSimpleExt as $key => $value) {
+    if($i > 2) {
+        break;
+    }
+    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']}% victoire en simple à l'extérieur ({$value['win']}/{$value['total']})</li>";
+    $i++;
+}
+?>
+            </ul>
+        </li>
+        <?php endif;
+        if(sizeof($highestPointSimple) >= $limit):
+        ?>
+        <li class="marginBtmBig"><h4>Classement des joueurs ayant marqué le plus de point par sets (points / matchs joués)</h4>
+            <ul>
+<?php
+
+$i = 0;
+foreach ($highestPointSimple as $key => $value) {
+    if($i > 2) {
+        break;
+    }
+    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']} point par match en simple ({$value['sum']}/{$value['total']})</li>";
+    $i++;
+}
+?>
+            </ul>
+        </li>
+        <?php endif; ?>
+    </ul>
+</div>
