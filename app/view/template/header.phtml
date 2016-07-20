@@ -20,6 +20,8 @@ $_admin = Controller::getController('AdminController');
 $_login = Controller::getController('LoginController');
 /** @var ListJoueurController $_listJoueur */
 $_listJoueur = Controller::getController('ListJoueurController');
+/** @var StatistiquesController $_statistiques */
+$_statistiques = Controller::getController('StatistiquesController');
 ?>
 <header>
     <nav class="navbar navbar-default">
@@ -37,6 +39,7 @@ $_listJoueur = Controller::getController('ListJoueurController');
                 <ul class="nav navbar-nav">
                     <li class="<?php echo ($_access->isActivePage($_matchs->getPage()))?'active':''; ?>"><a href="<?php echo $_matchs->getUrl(); ?>">Journées</a></li>
                     <li class="<?php echo ($_access->isActivePage($_classement->getPage()))?'active':''; ?>"><a href="<?php echo $_classement->getUrl(); ?>">Classement</a></li>
+                    <li class="<?php echo ($_access->isActivePage($_statistiques->getPage()))?'active':''; ?>"><a href="<?php echo $_statistiques->getUrl(); ?>">Statistiques</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="<?php echo ($_access->isActivePage($_listJoueur->getPage()))?'active':''; ?>"><a href="<?php echo $_listJoueur->getUrl(); ?>">Joueurs</a></li>

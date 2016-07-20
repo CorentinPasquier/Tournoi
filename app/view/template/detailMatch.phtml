@@ -50,7 +50,7 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                 <div class="row" align="center">
                     <h1><?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name') ?> <span id="scoreE1">0</span> - <span id="scoreE2">0</span> <?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name') ?></h1>
                 </div>
-                <?php if($_utilisateur != NULL && ($equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('id') == $defaultTeam || $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name') == $defaultTeam)): ?>
+                <?php if($_utilisateur != NULL && ($equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('id') == $defaultTeam || $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('id') == $defaultTeam)): ?>
                 <div class="row marginContentTab">
                     <button class="btn btn-info mrg" type="submit">ENREGISTRER</button>
                 </div>

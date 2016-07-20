@@ -56,7 +56,7 @@ class ListJoueurController extends Controller
             /** @var JoueurModel $joueur */
             $joueur = (new JoueurCollection())->loadById($get['id']);
 
-            if ($joueur->remove()) {
+            if ($joueur->hide()) {
                 $messages = new MessageManager();
                 $messages->newMessage('L\'utilisateur a été correctement supprimé', Message::LEVEL_SUCCESS);
             } else {

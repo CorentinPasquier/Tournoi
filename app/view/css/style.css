@@ -262,6 +262,10 @@ p.match{
     margin-bottom: 5px;
 }
 
+.marginBtmBig {
+    margin-bottom: 25px;
+}
+
 .hidden{
     display: none;
 }
@@ -309,4 +313,10 @@ p.match{
 .score_binaire {
     font-family: monospace;
     font-size: x-large;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }

@@ -50,6 +50,7 @@ class Access
             'MonProfil' => ['connect' => true, 'level' => UtilisateurModel::PRIVILEGE_USER],
             'Classement' => ['connect' => false, 'level' => UtilisateurModel::PRIVILEGE_USER],
             'ListJoueur' => ['connect' => true, 'level' => UtilisateurModel::PRIVILEGE_USER],
+            'Statistiques' => ['connect' => false, 'level' => UtilisateurModel::PRIVILEGE_USER],
             'Login' => ['connect' => false, 'level' => null],
             'Admin' => ['connect' => true, 'level' => UtilisateurModel::PRIVILEGE_ADMIN],
         ];

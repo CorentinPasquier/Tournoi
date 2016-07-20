@@ -291,7 +291,7 @@ class AdminController extends Controller
             /** @var UtilisateurModel $utilisateur */
             $utilisateur = (new UtilisateurCollection())->loadById($get['id']);
 
-            if ($utilisateur->hide()) {
+            if ($utilisateur->remove()) {
                 $messages = new MessageManager();
                 $messages->newMessage('Le joueur a été correctement supprimé', Message::LEVEL_SUCCESS);
             } else {
