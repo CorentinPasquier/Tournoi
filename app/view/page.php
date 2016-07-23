@@ -65,7 +65,8 @@ $messages = $messageManager->getMessages();
         <?php endforeach; ?>
     </head>
     <body>
-        <?php echo $_controller->getHeader(); ?>
+        <?php 
+	echo $_controller->getHeader(); ?>
         <div class="container-fluid body">
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-4">
