@@ -15,10 +15,12 @@ $winLoseSimpleDom = $_statistiques->getWinLoseSimpleDom(true);
 $winLoseSimpleExt = $_statistiques->getWinLoseSimpleExt(true);
 $winLoseSimpleAll = $_statistiques->getWinLoseSimpleAll($_statistiques->getWinLoseSimpleDom(), $_statistiques->getWinLoseSimpleExt());
 $highestPointSimple = $_statistiques->getHighestPointSimple(true);
-
+$winLoseDoubleDom = $_statistiques->getWinLoseDoubleDom(true);
+$winLoseDoubleExt = $_statistiques->getWinLoseDoubleExt(true);
+$winLoseDoubleAll = $_statistiques->getWinLoseDoubleAll($_statistiques->getWinLoseDoubleDom(), $_statistiques->getWinLoseDoubleExt());
+$highestPointDouble = $_statistiques->getHighestPointDouble(true);
 ?>
 <div align="center">
-    <h2>En construction ...</h2>
     <ul>
         <?php if(sizeof($winLoseSimpleAll) >= $limit): ?>
         <li class="marginBtmBig"><h4>Classement des joueurs en simple (victoire / matchs joués)</h4>
@@ -29,7 +31,7 @@ foreach ($winLoseSimpleAll as $key => $value) {
     if($i > 2) {
         break;
     }
-    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']}% victoire en simple ({$value['win']}/{$value['total']})</li>";
+    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']}% de victoires ({$value['win']}/{$value['total']})</li>";
     $i++;
 }
 
@@ -47,7 +49,7 @@ foreach ($winLoseSimpleDom as $key => $value) {
     if($i > 2) {
         break;
     }
-    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']}% victoire en simple à domicile ({$value['win']}/{$value['total']})</li>";
+    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']}% de victoires ({$value['win']}/{$value['total']})</li>";
     $i++;
 }
 
@@ -66,7 +68,7 @@ foreach ($winLoseSimpleExt as $key => $value) {
     if($i > 2) {
         break;
     }
-    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']}% victoire en simple à l'extérieur ({$value['win']}/{$value['total']})</li>";
+    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']}% de victoires ({$value['win']}/{$value['total']})</li>";
     $i++;
 }
 ?>
@@ -75,7 +77,7 @@ foreach ($winLoseSimpleExt as $key => $value) {
         <?php endif;
         if(sizeof($highestPointSimple) >= $limit):
         ?>
-        <li class="marginBtmBig"><h4>Classement des joueurs ayant marqué le plus de point par sets (points / matchs joués)</h4>
+        <li class="marginBtmBig"><h4>Classement des joueurs ayant marqué le plus de point par sets en simple (points / sets joués)</h4>
             <ul>
 <?php
 
@@ -84,7 +86,78 @@ foreach ($highestPointSimple as $key => $value) {
     if($i > 2) {
         break;
     }
-    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']} point par match en simple ({$value['sum']}/{$value['total']})</li>";
+    echo "<li>{$value['nom']} ({$value['equipe']}) : {$value['ratio']} points par match ({$value['sum']}/{$value['total']})</li>";
+    $i++;
+}
+?>
+            </ul>
+        </li>
+        <?php endif;
+        if(sizeof($winLoseDoubleAll) >= $limit): ?>
+            <li class="marginBtmBig"><h4>Classement des duos (victoire / matchs joués)</h4>
+                <ul>
+                    <?php
+                    $i = 0;
+                    foreach ($winLoseDoubleAll as $key => $value) {
+                        if($i > 2) {
+                            break;
+                        }
+                        echo "<li>{$value['joueur1']} et {$value['joueur2']} ({$value['equipe']}) : {$value['ratio']}% victoires ({$value['sup']}/{$value['total']})</li>";
+                        $i++;
+                    }
+
+                    ?>
+                </ul>
+            </li>
+        <?php endif;
+        if(sizeof($winLoseDoubleDom) >= $limit):
+        ?>
+        <li class="marginBtmBig"><h4>Classement des duos à domicile (victoires / matchs joués)</h4>
+            <ul>
+<?php
+
+$i = 0;
+foreach ($winLoseDoubleDom as $key => $value) {
+    if($i > 2) {
+        break;
+    }
+    echo "<li>{$value['joueur1']} et {$value['joueur2']} ({$value['equipe']}) : {$value['ratio']}% de victoires ({$value['sup']}/{$value['total']})</li>";
+    $i++;
+}
+?>
+            </ul>
+        </li>
+        <?php endif;
+        if(sizeof($winLoseDoubleExt) >= $limit):
+        ?>
+        <li class="marginBtmBig"><h4>Classement des duos à l'extérieur (victoires / matchs joués)</h4>
+            <ul>
+<?php
+
+$i = 0;
+foreach ($winLoseDoubleExt as $key => $value) {
+    if($i > 2) {
+        break;
+    }
+    echo "<li>{$value['joueur1']} et {$value['joueur2']} ({$value['equipe']}) : {$value['ratio']}% de victoires ({$value['sup']}/{$value['total']})</li>";
+    $i++;
+}
+?>
+            </ul>
+        </li>
+        <?php endif;
+        if(sizeof($highestPointDouble) >= $limit):
+        ?>
+        <li class="marginBtmBig"><h4>Classement des duos ayant marqué le plus de point par sets en double (points / sets joués)</h4>
+            <ul>
+<?php
+
+$i = 0;
+foreach ($highestPointDouble as $key => $value) {
+    if($i > 2) {
+        break;
+    }
+    echo "<li>{$value['joueur1']} et {$value['joueur2']} ({$value['equipe']}) : {$value['ratio']} points par match ({$value['sum']}/{$value['total']})</li>";
     $i++;
 }
 ?>
