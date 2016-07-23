@@ -109,6 +109,12 @@ if (isset($result['user_version'])) {
                 `visible` INTEGER
                 )';
     }
+    if($result[('user_version')] < 4){
+        
+        $queries['CInsert Exempt'] = 'INSERT INTO equipe 
+                VALUES (0,`EX`,`ex.jpg`,0
+                )';
+    }
 }
 
 $_error = false;

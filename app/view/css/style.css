@@ -320,3 +320,7 @@ ul {
     margin: 0;
     padding: 0;
 }
+
+.match {
+    text-transform: uppercase;
+}

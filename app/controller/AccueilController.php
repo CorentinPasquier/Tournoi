@@ -15,6 +15,7 @@ class AccueilController extends Controller
         $this->setTemplate('/accueil.phtml');
         $this->_title = 'Accueil';
         $this->_page = 'Accueil';
+        $this->addJS('/js/accueil.js');
     }
 
     /**
@@ -114,10 +115,10 @@ class AccueilController extends Controller
         /** @var UtilisateurModel $user */
         $user = $_userCollection->load(['equipe_default' => $id])->getFirstRow();
         if($user != null):
-            $info = $user->getAttribute('firstName') != null ? $user->getAttribute('firstName') : '';
-            $info .= $user->getAttribute('lastName') != null ? ' '.$user->getAttribute('lastName') : '';
-            $info.= $user->getAttribute('telephone') != null ? "\n".$user->getAttribute('telephone') : '';
-            $info.= $user->getAttribute('email') != null ? "\n".$user->getAttribute('email') : '';
+            $info = $user->getAttribute('firstName') != null ? '<b>'.$user->getAttribute('firstName') : '';
+            $info .= $user->getAttribute('lastName') != null ? ' '.$user->getAttribute('lastName').'</b>' : '';
+            $info.= $user->getAttribute('telephone') != null ? "<br />".$user->getAttribute('telephone') : '';
+            $info.= $user->getAttribute('email') != null ? "<br />".$user->getAttribute('email') : '';
         else:
             $info = '';
         endif;
