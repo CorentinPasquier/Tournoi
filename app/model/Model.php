@@ -127,8 +127,8 @@ Abstract class Model
     }
     
     public function hide() {
-        $query = "UPDATE {$this->_table} SET visible=0";
-        $stmt = $this->_db->prepareQuery($query,[]);
+        $query = "UPDATE {$this->_table} SET visible=0 WHERE {$this->_key}=:{$this->_key}";
+        $stmt = $this->_db->prepareQuery($query,[$this->_key => $this->getAttribute($this->_key)]);
         return $stmt->execute() !== false;
     }
 }
