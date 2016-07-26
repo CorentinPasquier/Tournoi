@@ -51,20 +51,34 @@ $messages = $messageManager->getMessages();
 ?>
 <html>
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title><?php echo $_controller->getTitle(); ?></title>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
         <link rel="stylesheet" href="<?php echo $_controller->getUrlFile('/css/bootstrap.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo $_controller->getUrlFile('/css/bootstrap-theme.min.css'); ?>">
         <link rel="stylesheet" href="<?php echo $_controller->getUrlFile('/css/style.css'); ?>">
         <?php foreach ($_controller->getCssFile() as $cssFile): ?>
             <link rel="stylesheet" href="<?php echo $_controller->getUrlFile($cssFile); ?>">
         <?php endforeach; ?>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src="<?php echo $_controller->getUrlFile('/js/bootstrap.min.js'); ?>"></script>
         <?php foreach ($_controller->getJsFile() as $jsFile): ?>
             <script src="<?php echo $_controller->getUrlFile($jsFile); ?>"></script>
         <?php endforeach; ?>
     </head>
     <body>
+<<<<<<< HEAD
         <?php 
 	echo $_controller->getHeader(); ?>
         <div class="container-fluid body">
@@ -75,9 +89,33 @@ $messages = $messageManager->getMessages();
                         <?php echo $message->getMessageHtml(); ?><br/>
                     <?php endforeach; ?>
                 </div>
+=======
+    <?php
+    if (ReadIni::getInstance()->getAttribute('general', 'google_analytics')): ?>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+            ga('create', '<?php echo ReadIni::getInstance()->getAttribute('general', 'google_analytics'); ?>', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+    <?php endif; ?>
+    <?php echo $_controller->getHeader(); ?>
+    <div class="container-fluid body">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4">
+                <?php /** @var Message $message */ ?>
+                <?php foreach ($messages as $message): ?>
+                    <?php echo $message->getMessageHtml(); ?><br/>
+                <?php endforeach; ?>
+>>>>>>> 54029271bccb8082ac8decbf64a4ab8e2ca0559c
             </div>
-            <?php echo $_controller->getHtml(); ?>
         </div>
-        <?php echo $_controller->getFooter(); ?>
+        <?php echo $_controller->getHtml(); ?>
+    </div>
+    <?php echo $_controller->getFooter(); ?>
     </body>
 </html>
