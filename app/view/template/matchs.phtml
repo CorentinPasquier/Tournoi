@@ -40,28 +40,24 @@ $totalMatch = $_equipeCollection->getNumberMatch();
                                     $date = $match->getDate();?>
                                     <form action="<?php echo $_match->getUrlAction('detail'); ?>" method="POST">
                                         <div class="row row_match center marginContentTab">
-                                            <div class="row marginBottom" align="center"><?php echo ($exempt==0)?($date[0] . " - " . $date[1]):'' ?></div>
                                             <div class="row">
-                                                <div class="col-lg-5 col-md-5 col-sm-5" align="left">
+                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 left margin_top" align="left">
                                                     <img class="flag" src="<?php echo $_match->getUrlImage('/ville/' . $equipe_1->getAttribute('image')) ?>">
-                                                    <p class="match"><?php echo $equipe_1->getAttribute('name') ?></p>
+                                                    <p class="match margin_left"><?php echo $equipe_1->getAttribute('name') ?></p>
                                                 </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2 score">
+                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 score" style="margin: 0;">
+                                                    <p class="fontSize"><?php echo ($exempt==0)?($date[0] . " - " . $date[1]):'' ?></p>
                                                     <?php if($exempt==0): ?>
                                                         <p class="score_match"><?php echo $score[0] ?> - <?php echo $score[1] ?></p>
                                                     <?php endif; ?>
-                                                </div>
-                                                <div class="col-lg-5 col-md-5 col-sm-5" align="right">
-                                                    <p class="match"><?php echo $equipe_2->getAttribute('name') ?></p>
-                                                    <img src="<?php echo $_match->getUrlImage('/ville/' . $equipe_2->getAttribute('image'))?>" class="flag">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-offset-5 col-lg-2">
                                                     <input name="matchDetail" type="hidden" value="<?php echo $match->getAttribute('id'); ?>">
                                                     <?php if($exempt==0 && $_utilisateur != NULL): ?>
                                                         <input class="btn-primary btn btn-xs btn-style" type="submit" value="feuille de match">
                                                     <?php endif; ?>
+                                                </div>
+                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 right margin_top" align="right">
+                                                    <p class="match margin_right"><?php echo $equipe_2->getAttribute('name') ?></p>
+                                                    <img src="<?php echo $_match->getUrlImage('/ville/' . $equipe_2->getAttribute('image'))?>" class="flag">
                                                 </div>
                                             </div>
                                         </div>

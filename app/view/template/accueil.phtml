@@ -17,7 +17,7 @@ $_equipeCollection = $_accueil->getAllEquipe();
         <h3>Bienvenue sur le site du tournoi inter club de Badminton !</h3>
         <h4>Vous pouvez trouver ci-dssous le calendrier de votre club : <?php echo $_equipeCollection->loadById($default_team)->getAttribute('name') ?></h4>
     </div>
-    <div class="hidden-lg hidden-hd hidden-sm col-xs-offset-1 col-xs-10 title">Calendrier de <?php echo $_equipeCollection->loadById($default_team)->getAttribute('name') ?></div>
+    <div class="hidden-lg hidden-md hidden-sm col-xs-offset-1 col-xs-10 title">Calendrier de <?php echo $_equipeCollection->loadById($default_team)->getAttribute('name') ?></div>
     <div style="margin-top: 20px;" class="row">
             <div class="col-lg-10 col-lg-offset-1">
 <?php
@@ -36,7 +36,7 @@ foreach ($_matchsCollection as $match):
 <!--            <div class="row marginBottom" align="center">--><?php //echo ($exempt==0)?($date[0] . " - " . $date[1]):'' ?><!--</div>-->
             <div class="row">
                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 left" align="left">
-                    <img class="flag hidden-xs" src="<?php echo $_accueil->getUrlImage('/ville/' . $equipe_1->getAttribute('image')) ?>">
+                    <img class="flag" src="<?php echo $_accueil->getUrlImage('/ville/' . $equipe_1->getAttribute('image')) ?>">
                     <button type="button" class="btn btn-default match" data-container="body" data-toggle="popover" data-placement="left" data-content="<?php echo $_accueil->getInfoTeam($equipe_1->getAttribute('id')) ?>"><?php echo $equipe_1->getAttribute('name') ?></button>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 score" style="margin: 0;">
@@ -51,7 +51,7 @@ foreach ($_matchsCollection as $match):
                 </div>
                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-4 right" align="right">
                     <button type="button" class="btn btn-default match" data-container="body" data-toggle="popover" data-placement="right" data-content="<?php echo $_accueil->getInfoTeam($equipe_2->getAttribute('id')) ?>"><?php echo $equipe_2->getAttribute('name') ?></button>
-                    <img src="<?php echo $_accueil->getUrlImage('/ville/' . $equipe_2->getAttribute('image'))?>" class="flag hidden-xs">
+                    <img src="<?php echo $_accueil->getUrlImage('/ville/' . $equipe_2->getAttribute('image'))?>" class="flag">
                 </div>
             </div>
 <!--            <div class="row">-->
