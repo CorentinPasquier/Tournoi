@@ -442,6 +442,12 @@ ul {
         margin-right: 65px;
         font-size: 10px;
     }
+    .left_button {
+        margin-left: 40px;
+    }
+    .right_button {
+        margin-right: 40px;
+    }
     .btn {
         font-size: 10px;
     }
