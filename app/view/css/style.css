@@ -356,3 +356,42 @@ ul {
 .content{
     z-index: -1;
 }
+
+.fontSize {
+    font-size: 12px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom:20px;
+}
+
+.navbar {
+    z-index: 3;
+}
+
+@media only screen and (max-width: 700px){
+    .btn {
+        font-size: 10px;
+    }
+    .left {
+        margin-left: 5px;
+    }
+    .right {
+        margin-left: -5px;
+    }
+    .fontSize {
+        font-size: 9px;
+    }
+    .titleMatch {
+        font-size: 18px;
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+    .titleMatch2 {
+        font-size: 18px;
+    }
+    .xs-mrgbtm {
+        margin-bottom: 5px;
+    }
+}

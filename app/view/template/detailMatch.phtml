@@ -46,16 +46,20 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
     <form class="form-horizontal" method="post" action="saveDetail">
         <input type="hidden" name="match" value="<?php echo $idMatch ?>">
         <div class="row">
-            <div class="" id="simplediv">
+            <div class="col-lg-10 col-lg-offset-1" id="simplediv">
                 <div class="row col-lg-10 col-lg-offset-1 col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10" align="center">
-                    <h1><?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name') ?> <span id="scoreE1">0</span> - <span id="scoreE2">0</span> <?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name') ?></h1>
+                    <h1 class="titleMatch"><?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name') ?> <span id="scoreE1">0</span> - <span id="scoreE2">0</span> <?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name') ?></h1>
                 </div>
                 <?php if($_utilisateur != NULL && ($equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('id') == $defaultTeam)): ?>
                 <div class="row marginContentTab">
                     <button class="btn btn-info mrg" type="submit">ENREGISTRER</button>
                 </div>
+                <?php else: ?>
+                <div class="row" style="margin-top:80px;color:red;">
+                    <p class="mrg">Attention : vous ne pouvez pas modifier un match si vous n'êtes pas l'équipe à domicile.</p>
+                </div>
                 <?php endif; ?>
-                <h1>Simples <button class="btn btn-default green" type="button" id="addSimple">+</button></h1>
+                <h1 class="titleMatch2">Simples <button class="btn btn-default green" type="button" id="addSimple">+</button></h1>
                 <div class="row hidden-sm hidden-md hidden-xs" align="center" id="labels">
                     <label class="col-lg-2" for="joueur1">Joueur (<?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name')?>)</label>
                     <label class="col-lg-2" for="joueur2">Joueur (<?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name')?>)</label>
@@ -69,7 +73,7 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                 foreach ($_allSimple as $simple):
                     $i++?>
                     <div style="margin-bottom: 4px;" class="row" align="center" id="simple[<?php echo $i ?>]">
-                        <div class="col-lg-2 col-sm-5 col-xs-5">
+                        <div class="col-lg-2 col-sm-5 col-xs-5 xs-mrgbtm">
                             <select id="joueurS1[<?php echo $i ?>]" name="joueurS[<?php echo $i ?>][joueur_1]" class="form-control form-control2 first" title="joueur">
                                 <option value="0"></option>
                                 <?php /** @var JoueurModel $joueur */
@@ -78,7 +82,7 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="col-lg-2 col-sm-5 col-xs-5">
+                        <div class="col-lg-2 col-sm-5 col-xs-5 xs-mrgbtm">
                             <select id="joueurS2[<?php echo $i ?>]" name="joueurS[<?php echo $i ?>][joueur_2]" class="form-control form-control2 second" title="joueur">
                                 <option value="0"></option>
                                 <?php /** @var JoueurModel $joueur */
@@ -111,7 +115,7 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                 <!--                FIN MATCH SIMPLE-->
             </div>
             <div style="margin-bottom: 4px;" class="col-lg-10 col-lg-offset-1" id="doublediv">
-                <h1>Doubles <button class="btn btn-default green" type="button" id="addDouble">+</button></h1>
+                <h1 class="titleMatch2">Doubles <button class="btn btn-default green" type="button" id="addDouble">+</button></h1>
                 <div class="row hidden-sm hidden-md hidden-xs" align="center" id="labelsD">
                     <label class="col-lg-2" for="joueur1">Joueurs (<?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name')?>)</label>
                     <label class="col-lg-2" for="joueur2">Joueurs (<?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name')?>)</label>
@@ -125,7 +129,7 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                 foreach ($_allDouble as $double):
                     $i++;?>
                     <div class="row marginBtm" align="center" id="double[<?php echo $i ?>]">
-                        <div class="col-lg-2 col-sm-5 col-xs-5">
+                        <div class="col-lg-2 col-sm-5 col-xs-5 xs-mrgbtm">
                             <select title="double1_1" class="form-control form-control2 first" id="joueurD1_1[<?php echo $i ?>]" name="joueurD[<?php echo $i ?>][joueur_1_1]">
                                 <option value="0"></option>
                             <?php /** @var JoueurModel $joueur */
@@ -141,7 +145,7 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                             <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="col-lg-2 col-sm-5 col-xs-5">
+                        <div class="col-lg-2 col-sm-5 col-xs-5 xs-mrgbtm">
                             <select title="double2_1" class="form-control form-control2 second" id="joueurD1_2[<?php echo $i ?>]" name="joueurD[<?php echo $i ?>][joueur_2_1]">
                                 <option value="0"></option>
                                 <?php /** @var JoueurModel $joueur */
