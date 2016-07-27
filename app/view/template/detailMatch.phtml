@@ -56,7 +56,7 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                 </div>
                 <?php else: ?>
                 <div class="row" style="margin-top:80px;color:red;">
-                    <p class="mrg">Attention : vous ne pouvez pas modifier un match si vous n'êtes pas l'équipe à domicile.</p>
+                    <p class="col-lg-offset-1 col-lg-10 col-xs-offset-1 col-xs-10 col-md-offset-1 col-md-10 col-sm-offset-1 col-sm-10 warning_detail">Attention : vous ne pouvez pas modifier un match si vous n'êtes pas l'équipe à domicile.</p>
                 </div>
                 <?php endif; ?>
                 <h1 class="titleMatch2">Simples <button class="btn btn-default green" type="button" id="addSimple">+</button></h1>

@@ -370,7 +370,38 @@ ul {
     z-index: 3;
 }
 
-@media only screen and (max-width: 700px){
+.warning_detail {
+    text-align: center;
+}
+
+@media only screen and (max-width: 470px) {
+    .margin_left {
+        font-size: 8px;
+    }
+    .margin_right {
+        font-size: 8px;
+    }
+}
+
+@media only screen and (min-width: 470px) and (max-width: 543px) {
+    .margin_left {
+        font-size: 10px;
+    }
+    .margin_right {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 543px){
+    .margin_left {
+        margin-left: 30px;
+    }
+    .margin_top {
+        margin-top: 20px;
+    }
+    .margin_right {
+        margin-right: 30px;
+    }
     .btn {
         font-size: 10px;
     }
@@ -393,5 +424,77 @@ ul {
     }
     .xs-mrgbtm {
         margin-bottom: 5px;
+    }
+    .flag {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 544px) and (max-width: 767px){
+    .margin_left {
+        margin-left: 65px;
+        font-size: 10px;
+    }
+    .margin_top {
+        margin-top: 20px;
+    }
+    .margin_right {
+        margin-right: 65px;
+        font-size: 10px;
+    }
+    .btn {
+        font-size: 10px;
+    }
+    .fontSize {
+        font-size: 9px;
+    }
+    .titleMatch {
+        font-size: 18px;
+        margin-top: -10px;
+        margin-bottom: 20px;
+    }
+    .titleMatch2 {
+        font-size: 18px;
+    }
+    .xs-mrgbtm {
+        margin-bottom: 5px;
+    }
+    .flag {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .flag {
+        margin: 0 50px 0 50px;
+        width: 90px;
+        height: 60px;
+        overflow:hidden;
+        -moz-box-shadow: 0px 0px 10px #343434;
+        -webkit-box-shadow: 0px 0px 10px #343434;
+        -o-box-shadow: 0px 0px 10px #343434;
+        box-shadow: 0px 0px 10px #343434;
+    }
+    .fontSize {
+        font-size: 9px;
+    }
+    .btn {
+        font-size: 10px;
+    }
+    .match {
+        font-size: 11px;
+    }
+}
+
+@media only screen and (min-width: 991px) {
+    .flag {
+        margin: 0 50px 0 50px;
+        width: 120px;
+        height: 80px;
+        overflow:hidden;
+        -moz-box-shadow: 0px 0px 10px #343434;
+        -webkit-box-shadow: 0px 0px 10px #343434;
+        -o-box-shadow: 0px 0px 10px #343434;
+        box-shadow: 0px 0px 10px #343434;
     }
 }
