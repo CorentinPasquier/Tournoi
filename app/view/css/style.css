@@ -405,11 +405,11 @@ ul {
     .btn {
         font-size: 10px;
     }
-    .left {
+    .left_button {
         margin-left: 5px;
     }
-    .right {
-        margin-left: -5px;
+    .right_button {
+        margin-right: 5px;
     }
     .fontSize {
         font-size: 9px;
