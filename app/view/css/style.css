@@ -374,6 +374,15 @@ ul {
     text-align: center;
 }
 
+.no_mrg_btm {
+    margin-bottom: 0;
+}
+
+.stat_header {
+    color: grey;
+    text-transform: uppercase;
+}
+
 @media only screen and (max-width: 470px) {
     .margin_left {
         font-size: 8px;

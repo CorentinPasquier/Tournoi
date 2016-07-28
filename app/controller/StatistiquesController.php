@@ -19,6 +19,7 @@ class StatistiquesController extends Controller {
         $this->setTemplate('/statistiques.phtml');
         $this->_title = 'Statistiques';
         $this->_page = 'Statistiques';
+        $this->addCSS('/css/circle.css');
 
         $this->_connexion = SQLite::getInstance();
 
@@ -57,7 +58,7 @@ class StatistiquesController extends Controller {
             $_stat[$result['id']]['equipe'] = $result['equipe'];
             $_stat[$result['id']]['win'] = $result['sup'];
             $_stat[$result['id']]['total'] = $result['total'];
-            $_stat[$result['id']]['ratio'] = number_format($result['sup']*100/$result['total'],2);
+            $_stat[$result['id']]['ratio'] = number_format($result['sup']*100/$result['total'],0);
         }
 
         if($sort) {
@@ -106,7 +107,7 @@ class StatistiquesController extends Controller {
             $_stat[$result['id1'].$result['id2']]['equipe'] = $result['equipe'];
             $_stat[$result['id1'].$result['id2']]['total'] = $result['total'];
             $_stat[$result['id1'].$result['id2']]['sup'] = $result['sup'];
-            $_stat[$result['id1'].$result['id2']]['ratio'] = number_format($result['sup']*100/$result['total'],2);
+            $_stat[$result['id1'].$result['id2']]['ratio'] = number_format($result['sup']*100/$result['total'],0);
         }
 
         if($sort) {
@@ -148,7 +149,7 @@ class StatistiquesController extends Controller {
             $_stat[$result['id']]['equipe'] = $result['equipe'];
             $_stat[$result['id']]['win'] = $result['sup'];
             $_stat[$result['id']]['total'] = $result['total'];
-            $_stat[$result['id']]['ratio'] = number_format($result['sup']*100/$result['total'],2);
+            $_stat[$result['id']]['ratio'] = number_format($result['sup']*100/$result['total'],0);
         }
 
         if($sort) {
@@ -199,7 +200,7 @@ class StatistiquesController extends Controller {
             $_stat[$result['id1'].$result['id2']]['equipe'] = $result['equipe'];
             $_stat[$result['id1'].$result['id2']]['total'] = $result['total'];
             $_stat[$result['id1'].$result['id2']]['sup'] = $result['sup'];
-            $_stat[$result['id1'].$result['id2']]['ratio'] = number_format($result['sup']*100/$result['total'],2);
+            $_stat[$result['id1'].$result['id2']]['ratio'] = number_format($result['sup']*100/$result['total'],0);
         }
 
         if($sort) {
@@ -226,7 +227,7 @@ class StatistiquesController extends Controller {
                $_stat[$key]['equipe'] = $array_dom[$key]['equipe'];
                $_stat[$key]['win'] = $array_dom[$key]['win'] + $array_ext[$key]['win'];
                $_stat[$key]['total'] = $array_dom[$key]['total'] + $array_ext[$key]['total'];
-               $_stat[$key]['ratio'] = number_format($_stat[$key]['win']*100/$_stat[$key]['total'],2);
+               $_stat[$key]['ratio'] = number_format($_stat[$key]['win']*100/$_stat[$key]['total'],0);
             }
             else {
                 $_stat[$key] = $array_dom[$key];
@@ -260,7 +261,7 @@ class StatistiquesController extends Controller {
                $_stat[$key]['equipe'] = $array_dom[$key]['equipe'];
                $_stat[$key]['sup'] = $array_dom[$key]['sup'] + $array_ext[$key]['sup'];
                $_stat[$key]['total'] = $array_dom[$key]['total'] + $array_ext[$key]['total'];
-               $_stat[$key]['ratio'] = number_format($_stat[$key]['sup']*100/$_stat[$key]['total'],2);
+               $_stat[$key]['ratio'] = number_format($_stat[$key]['sup']*100/$_stat[$key]['total'],0);
             }
             else {
                 $_stat[$key] = $array_dom[$key];
@@ -316,13 +317,13 @@ class StatistiquesController extends Controller {
             $_stat[$result['id']]['equipe'] = $result['equipe'];
             $_stat[$result['id']]['sum'] = $result['sum'];
             $_stat[$result['id']]['total'] = 2*$result['score1']+$result['score3'];
-            $_stat[$result['id']]['ratio'] = number_format($_stat[$result['id']]['sum'] / $_stat[$result['id']]['total'], 2);
+            $_stat[$result['id']]['ratio'] = number_format($_stat[$result['id']]['sum'] / $_stat[$result['id']]['total'], 0);
         }
         while ($result = $results_ext->fetchArray(SQLITE3_ASSOC)) {
             if(array_key_exists($result['id'], $_stat)) {
                 $_stat[$result['id']]['sum'] += $result['sum'];
                 $_stat[$result['id']]['total'] += 2*$result['score1']+$result['score3'];
-                $_stat[$result['id']]['ratio'] = number_format($_stat[$result['id']]['sum'] / $_stat[$result['id']]['total'], 2);
+                $_stat[$result['id']]['ratio'] = number_format($_stat[$result['id']]['sum'] / $_stat[$result['id']]['total'], 0);
             }
         }
 
@@ -384,13 +385,13 @@ class StatistiquesController extends Controller {
             $_stat[$result['id1'].$result['id2']]['equipe'] = $result['equipe'];
             $_stat[$result['id1'].$result['id2']]['sum'] = $result['sum'];
             $_stat[$result['id1'].$result['id2']]['total'] = 2*$result['score1']+$result['score3'];
-            $_stat[$result['id1'].$result['id2']]['ratio'] = number_format($_stat[$result['id1'].$result['id2']]['sum'] / $_stat[$result['id1'].$result['id2']]['total'], 2);
+            $_stat[$result['id1'].$result['id2']]['ratio'] = number_format($_stat[$result['id1'].$result['id2']]['sum'] / $_stat[$result['id1'].$result['id2']]['total'], 0);
         }
         while ($result = $results_ext->fetchArray(SQLITE3_ASSOC)) {
             if(array_key_exists($result['id1'].$result['id2'], $_stat)) {
                 $_stat[$result['id1'].$result['id2']]['sum'] += $result['sum'];
                 $_stat[$result['id1'].$result['id2']]['total'] += 2*$result['score1']+$result['score3'];
-                $_stat[$result['id1'].$result['id2']]['ratio'] = number_format($_stat[$result['id1'].$result['id2']]['sum'] / $_stat[$result['id1'].$result['id2']]['total'], 2);
+                $_stat[$result['id1'].$result['id2']]['ratio'] = number_format($_stat[$result['id1'].$result['id2']]['sum'] / $_stat[$result['id1'].$result['id2']]['total'], 0);
             }
         }
 

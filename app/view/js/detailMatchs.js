@@ -15,24 +15,27 @@ $(document).ready(function(){
     $('#addSimple').on('click', function () {
         idSimple = idSimple+1;
         $('#simplediv').append('' +
-            '<div style="margin-bottom: 6px;" class="row" align="center" id="simple[' + idSimple + ']">' +
-                '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+            '<div style="margin-bottom: 20px;" class="row" align="center" id="simple[' + idSimple + ']">' +
+                '<div class="col-lg-2 col-sm-5 col-xs-5 xs-mrgbtm">' +
                     '<select id="joueurS1[' + idSimple +']" name="joueurS[' + idSimple + '][joueur_1]" class="form-control form-control2 first" title="joueur">' +
                     getSelect(1) +
                 '</div>' +
-                '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+                '<div class="col-lg-2 col-sm-5 col-xs-5 xs-mrgbtm">' +
                     '<select id="joueurS2[' + idSimple +']" name="joueurS[' + idSimple + '][joueur_2]" class="form-control form-control2 second" title="joueur">' +
                     getSelect(2) +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+                    '<p class="hidden-lg no_mrg_btm">Set 1</p>' +
                     '<input class="form-control first" id="scoreS1_1[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_1_1]">' +
                     '<input class="form-control second" id="scoreS1_2[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_1_2]">' +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+                    '<p class="hidden-lg no_mrg_btm">Set 2</p>' +
                     '<input class="form-control btn-xs first" id="scoreS2_1[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_2_1]">' +
                     '<input class="form-control btn-xs second" id="scoreS2_2[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_2_2]">' +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+                    '<p class="hidden-lg no_mrg_btm">Set 3</p>' +
                     '<input class="form-control btn-xs first" id="scoreS3_1[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_3_1]">' +
                     '<input class="form-control btn-xs second" id="scoreS3_2[' + idSimple + ']" type="number" value="" name="scoreS[' + idSimple + '][match_3_2]">' +
                 '</div>' +
@@ -51,28 +54,31 @@ $(document).ready(function(){
     $('#addDouble').on('click', function () {
         idDouble = idDouble +1;
         $('#doublediv').append('' +
-            '<div style="margin-bottom: 5px;" class="row" align="center" id="double[' + idDouble + ']">' +
-                '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+            '<div style="margin-bottom: 20px;" class="row" align="center" id="double[' + idDouble + ']">' +
+                '<div class="col-lg-2 col-sm-5 col-xs-5 xs-mrgbtm">' +
                     '<select title="double1_1" class="form-control form-control2 first" id="joueurD1_1[' + idDouble + ']" name="joueurD[' + idDouble + '][joueur_1_1]">' +
                     getSelect(1) +
                     '<select title="double1_2" class="form-control form-control2 first" id="joueurD2_1[' + idDouble + ']" name="joueurD[' + idDouble + '][joueur_1_2]">' +
                     getSelect(1) +
                 '</div>' +
-                '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+                '<div class="col-lg-2 col-sm-5 col-xs-5 xs-mrgbtm">' +
                     '<select title="double2_1" class="form-control form-control2 second" id="joueurD1_2[' + idDouble + ']" name="joueurD[' + idDouble + '][joueur_2_1]">' +
                     getSelect(2) +
                     '<select title="double2_2" class="form-control form-control2 second" id="joueurD2_2[' + idDouble + ']" name="joueurD[' + idDouble + '][joueur_2_2]">' +
                     getSelect(2) +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+                    '<p class="hidden-lg no_mrg_btm">Set 1</p>' +
                     '<input class="form-control first" id="scoreD1_1[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_1_1]">' +
                     '<input class="form-control second" id="scoreD1_2[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_1_2]">' +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+                    '<p class="hidden-lg no_mrg_btm">Set 2</p>' +
                     '<input class="form-control btn-xs first" id="scoreD2_1[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_2_1]">' +
                     '<input class="form-control btn-xs second" id="scoreD2_2[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_2_2]">' +
                 '</div>' +
                 '<div class="col-lg-2 col-sm-5 col-xs-5">' +
+                    '<p class="hidden-lg no_mrg_btm">Set 3</p>' +
                     '<input class="form-control btn-xs first" id="scoreD3_1[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_3_1]">' +
                     '<input class="form-control btn-xs second" id="scoreD3_2[' + idDouble + ']" type="number" value="" name="scoreD[' + idDouble + '][match_3_2]">' +
                 '</div>' +
@@ -112,13 +118,20 @@ $(document).ready(function(){
         var score32 = $('#scoreS3_2\\[' + id + '\\]');
         if(score11.val() != "" && score12.val() != "" && score21.val() != "" && score22.val() != "") {
             if (((parseInt(score11.val()) > parseInt(score12.val())) && (parseInt(score21.val()) < parseInt(score22.val()))) || ((parseInt(score11.val()) < parseInt(score12.val())) && (parseInt(score21.val()) > parseInt(score22.val())))) {
+                score31.prev().show();
                 score31.show();
                 score32.show();
             }
             else {
+                score31.prev().hide();
                 score31.hide();
                 score32.hide();
             }
+        }
+        else {
+            score31.prev().hide();
+            score31.hide();
+            score32.hide();
         }
         updateScore();
     });
@@ -134,16 +147,31 @@ $(document).ready(function(){
         var score32 = $('#scoreD3_2\\[' + id + '\\]');
         if(score11.val() != "" && score12.val() != "" && score21.val() != "" && score22.val() != "") {
             if (((parseInt(score11.val()) > parseInt(score12.val())) && (parseInt(score21.val()) < parseInt(score22.val()))) || ((parseInt(score11.val()) < parseInt(score12.val())) && (parseInt(score21.val()) > parseInt(score22.val())))) {
+                score31.prev().show();
                 score31.show();
                 score32.show();
             }
             else {
+                score31.prev().hide();
                 score31.hide();
                 score32.hide();
             }
         }
+        else {
+            score31.prev().hide();
+            score31.hide();
+            score32.hide();
+        }
         updateScore();
     });
+
+    while(idSimple < 4){
+        $(document).ready($('#addSimple').click());
+    }
+
+    while(idDouble < 5){
+        $(document).ready($('#addDouble').click());
+    }
 
     // Hide third score for simple already set
     for(var i = 1; i <= idSimple; i++) {
@@ -153,14 +181,6 @@ $(document).ready(function(){
     // Hide third score for double already set
     for(i = 1; i <= idDouble; i++) {
         $(document).ready($('#scoreD1_1\\[' + i + '\\]').blur());
-    }
-
-    while(idSimple < 4){
-        $('#addSimple').click();
-    }
-
-    while(idDouble < 5){
-        $('#addDouble').click();
     }
 
     // Update score at the begining in function of scores already set
