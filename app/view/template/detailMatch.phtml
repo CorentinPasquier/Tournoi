@@ -63,9 +63,9 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                 <div class="row hidden-sm hidden-md hidden-xs" align="center" id="labels">
                     <label class="col-lg-2" for="joueur1">Joueur (<?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name')?>)</label>
                     <label class="col-lg-2" for="joueur2">Joueur (<?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name')?>)</label>
-                    <label class="col-lg-2" for="score1_1">Match 1</label>
-                    <label class="col-lg-2" for="score2">Match 2</label>
-                    <label class="col-lg-2" for="score3">Match 3</label>
+                    <label class="col-lg-2" for="score1_1">Set 1</label>
+                    <label class="col-lg-2" for="score2">Set 2</label>
+                    <label class="col-lg-2" for="score3">Set 3</label>
                 </div>
                 <!--                DEBUT MATCH SIMPLE-->
                 <?php $i=0;
@@ -92,14 +92,17 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                             </select>
                         </div>
                         <div class="col-lg-2 col-sm-5 col-xs-5">
+                            <p class="hidden-lg no_mrg_btm">Set 1</p>
                             <input class="form-control first" id="scoreS1_1[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_1_1') ?>" name="scoreS[<?php echo $i ?>][match_1_1]">
                             <input class="form-control second" id="scoreS1_2[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_1_2') ?>" name="scoreS[<?php echo $i ?>][match_1_2]">
                         </div>
                         <div class="col-lg-2 col-sm-5 col-xs-5">
+                            <p class="hidden-lg no_mrg_btm">Set 2</p>
                             <input class="form-control btn-xs first" id="scoreS2_1[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_2_1') ?>" name="scoreS[<?php echo $i ?>][match_2_1]">
                             <input class="form-control btn-xs second" id="scoreS2_2[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_2_2') ?>" name="scoreS[<?php echo $i ?>][match_2_2]">
                         </div>
                         <div class="col-lg-2 col-sm-5 col-xs-5">
+                            <p class="hidden-lg no_mrg_btm">Set 3</p>
                             <input class="form-control btn-xs first" id="scoreS3_1[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_3_1') ?>" name="scoreS[<?php echo $i ?>][match_3_1]">
                             <input class="form-control btn-xs second" id="scoreS3_2[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_3_2') ?>" name="scoreS[<?php echo $i ?>][match_3_2]">
                         </div>
@@ -119,9 +122,9 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                 <div class="row hidden-sm hidden-md hidden-xs" align="center" id="labelsD">
                     <label class="col-lg-2" for="joueur1">Joueurs (<?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name')?>)</label>
                     <label class="col-lg-2" for="joueur2">Joueurs (<?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name')?>)</label>
-                    <label class="col-lg-2" for="score1_1">Match 1</label>
-                    <label class="col-lg-2" for="score2">Match 2</label>
-                    <label class="col-lg-2" for="score3">Match 3</label>
+                    <label class="col-lg-2" for="score1_1">Set 1</label>
+                    <label class="col-lg-2" for="score2">Set 2</label>
+                    <label class="col-lg-2" for="score3">Set 3</label>
                 </div>
                 <!--                DEBUT MATCH DOUBLE-->
                 <?php $i=0;
@@ -162,14 +165,17 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                             </select>
                         </div>
                         <div class="col-lg-2 col-sm-5 col-xs-5">
+                            <p class="hidden-lg no_mrg_btm">Set 1</p>
                             <input class="form-control first" id="scoreD1_1[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_1_1') ?>" name="scoreD[<?php echo $i ?>][match_1_1]">
                             <input class="form-control second" id="scoreD1_2[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_1_2') ?>" name="scoreD[<?php echo $i ?>][match_1_2]">
                         </div>
                         <div class="col-lg-2 col-sm-5 col-xs-5">
+                            <p class="hidden-lg no_mrg_btm">Set 2</p>
                             <input class="form-control btn-xs first" id="scoreD2_1[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_2_1') ?>" name="scoreD[<?php echo $i ?>][match_2_1]">
                             <input class="form-control btn-xs second" id="scoreD2_2[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_2_2') ?>" name="scoreD[<?php echo $i ?>][match_2_2]">
                         </div>
                         <div class="col-lg-2 col-sm-5 col-xs-5">
+                            <p class="hidden-lg no_mrg_btm">Set 3</p>
                             <input class="form-control btn-xs first" id="scoreD3_1[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_3_1') ?>" name="scoreD[<?php echo $i ?>][match_3_1]">
                             <input class="form-control btn-xs second" id="scoreD3_2[<?php echo $i ?>]" type="number" value="<?php echo $double->getAttribute('score_3_2') ?>" name="scoreD[<?php echo $i ?>][match_3_2]">
                         </div>
