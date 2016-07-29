@@ -12,7 +12,7 @@ var options = {
             return "left";
         }
 
-        if (middle <= ($(source).width() + position.left) && $(source).width() + position.left < body.width()) {
+        if (middle <= ($(source).width() + position.left) && $(source).width() + position.left + 200 < body.width()) {
             return "right";
         }
 
