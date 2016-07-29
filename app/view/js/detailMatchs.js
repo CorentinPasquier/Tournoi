@@ -197,7 +197,7 @@ $(document).ready(function(){
         var score2 = 0;
         scores.each(function () {
             $(this).children().first().next().next().first().next().next().next().children().html("");
-            var children = $(this).children().first().next().next().first().children().first();
+            var children = $(this).children().first().next().next().first().children().first().next();
             if(children.val() != "" && children.next().val() != "") {
                 if (parseInt(children.val()) > parseInt(children.next().val())) {
                     score = 1;
@@ -205,7 +205,7 @@ $(document).ready(function(){
                 else {
                     score = -1;
                 }
-                children = $(this).children().first().next().next().first().next().children().first();
+                children = $(this).children().first().next().next().first().next().children().first().next();
                 if(children.val() != "" && children.next().val() != "") {
                     if (parseInt(children.val()) > parseInt(children.next().val())) {
                         score += 1;
@@ -220,7 +220,7 @@ $(document).ready(function(){
                         $(this).children().first().next().next().first().next().next().next().children().html("0-1");
                     }
                     if (score == 0) {
-                        children = $(this).children().first().next().next().first().next().next().children().first();
+                        children = $(this).children().first().next().next().first().next().next().children().first().next();
                         if(children.val() != "" && children.next().val() != "") {
                             if (parseInt(children.val()) > parseInt(children.next().val())) {
                                 score += 1;
