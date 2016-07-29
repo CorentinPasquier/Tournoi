@@ -1,3 +1,8 @@
+html, body {
+width: 100%;
+overflow-x: hidden;
+}
+
 /** #############
 ***   LOGIN   ***
 ##############**/
@@ -381,6 +386,20 @@ ul {
 .stat_header {
     color: grey;
     text-transform: uppercase;
+}
+
+.right_button {
+    max-width: 109px;
+}
+
+.left_button {
+    max-width: 109px;
+}
+
+button {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
 }
 
 @media only screen and (max-width: 470px) {
