@@ -12,7 +12,7 @@ $default_team = $_utilisateur->getAttribute('equipe_default');
 $_matchsCollection = $_accueil->getAllMatchByTeam($default_team);
 $_equipeCollection = $_accueil->getAllEquipe();
 ?>
-<div style="margin-top: 30px; margin-bottom: 30px;">
+<div style="margin-bottom: 30px;">
     <div class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-10 col-sm-10 col-md-10 col-xs-10 hidden-xs title">
         <h3>Bienvenue sur le site du tournoi inter club de Badminton !</h3>
         <h4>Vous pouvez trouver ci-dssous le calendrier de votre club : <?php echo $_equipeCollection->loadById($default_team)->getAttribute('name') ?></h4>
