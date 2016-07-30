@@ -388,14 +388,6 @@ ul {
     text-transform: uppercase;
 }
 
-.right_button {
-    max-width: 109px;
-}
-
-.left_button {
-    max-width: 109px;
-}
-
 button {
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
     -moz-box-sizing: border-box;    /* Firefox, other Gecko */
@@ -500,7 +492,7 @@ button {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .flag {
-        margin: 0 50px 0 50px;
+        margin: 0 45px 0 45px;
         width: 90px;
         height: 60px;
         overflow:hidden;
