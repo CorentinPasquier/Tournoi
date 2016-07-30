@@ -106,10 +106,10 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                             <input class="form-control btn-xs first" id="scoreS3_1[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_3_1') ?>" name="scoreS[<?php echo $i ?>][match_3_1]">
                             <input class="form-control btn-xs second" id="scoreS3_2[<?php echo $i ?>]" type="number" value="<?php echo $simple->getAttribute('score_3_2') ?>" name="scoreS[<?php echo $i ?>][match_3_2]">
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-1 col-sm-1 col-xs-3">
                             <p class="score_binaire"></p>
                         </div>
-                        <div class="col-lg-1">
+                        <div class="col-lg-1 col-sm-1 col-xs-1">
                             <button class="btn btn-default red" type="button" data-idS="<?php echo $i ?>">-</button>
                         </div>
                         <input type="hidden" name="databaseIdS[<?php echo $i ?>]" value="<?php echo $simple->getAttribute('id')?>"> <!--// AJOUTER AU JS-->
