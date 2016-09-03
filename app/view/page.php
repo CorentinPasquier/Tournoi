@@ -78,16 +78,6 @@ $messages = $messageManager->getMessages();
         <?php endforeach; ?>
     </head>
     <body>
-        <?php 
-	echo $_controller->getHeader(); ?>
-        <div class="container-fluid body">
-            <div class="row">
-                <div class="col-lg-4 col-lg-offset-4">
-                    <?php /** @var Message $message */ ?>
-                    <?php foreach ($messages as $message): ?>
-                        <?php echo $message->getMessageHtml(); ?><br/>
-                    <?php endforeach; ?>
-                </div>
     <?php
     if (ReadIni::getInstance()->getAttribute('general', 'google_analytics')): ?>
         <script>

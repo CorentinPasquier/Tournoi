@@ -74,7 +74,7 @@ class AdminController extends Controller
         if(isset($post['equipes'])){
             $size = sizeof($post['equipes']);
             if($size % 2 == 1){
-                array_push($post['equipes'], "0"); // Ajout de l'exempt si nombre équipe impair
+                array_push($post['equipes'], "20"); // Ajout de l'exempt si nombre équipe impair
                 $size++;
             }
             shuffle($post['equipes']);
@@ -87,8 +87,9 @@ class AdminController extends Controller
                 else{
                     $equipe->setAttribute('en_cours', 0);
                 }
-                if(!$equipe->save())
+                if(!$equipe->save()) {
                     $erreur = true;
+                }
             }
             for($i = 0; $i < $size-1; $i++){ // Parcours par jour
                 for($j = 0; $j < $size/2; $j++) {
@@ -103,8 +104,9 @@ class AdminController extends Controller
                         $match->setAttribute('equipe_id_2', $post['equipes'][$size - $j - 1]);
                     }
                     $match->setAttribute('en_cours', 1);
-                    if(!$match->save())
+                    if(!$match->save()) {
                         $erreur = true;
+                    }
                 }
                 if($i != $size-2) {
                     $temp = $post['equipes'][$size - 1];
@@ -144,7 +146,7 @@ class AdminController extends Controller
         }
         else{
             $message = new MessageManager();
-            $message->newMessage('Le tounroi a bien été cloturé', Message::LEVEL_SUCCESS);
+            $message->newMessage('Le tournoi a bien été cloturé !', Message::LEVEL_SUCCESS);
             $this->redirect($this->getUrlAction('generateTournament'));
         }
     }
