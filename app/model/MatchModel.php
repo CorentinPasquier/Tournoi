@@ -65,11 +65,35 @@ class MatchModel extends Model
         $week = $this->getAttribute('date');
         if($week != null) {
             $year = date("Y");
+            $readini = new ReadIni('../tools/config.ini');
+            $current_week = $readini->getAttribute('info_tournoi', 'start_week');
+            if($week < $current_week)
+                $year++;
+            
             $time = strtotime("1 January $year", time());
             $day = date('w', $time);
+                if($day == 0)
+                    $day = 7;
             $time += ((7 * $week) + 1 - $day) * 24 * 3600;
             $return[0] = date('d-m-Y', $time);
             $time += 13 * 24 * 3600;
+            $return[1] = date('d-m-Y', $time);
+        }
+        else if ($week == 52) {
+            $year = date("Y");
+            $time = strtotime("1 January $year", time());
+            $day = date('w', $time);
+            if($day == 0)
+                $day = 7;
+            $time += ((7 * $week) + 1 - $day) * 24 * 3600;
+            $return[0] = date('d-m-Y', $time);
+
+            $year++;
+            $time = strtotime("1 January $year", time());
+            $day = date('w', $time);
+            if($day == 0)
+                $day = 7;
+            $time += (8 - $day) * 24 * 3600;
             $return[1] = date('d-m-Y', $time);
         }
         else {

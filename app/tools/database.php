@@ -111,9 +111,14 @@ if (isset($result['user_version'])) {
     }
     if($result[('user_version')] < 4){
         
-        $queries['CInsert Exempt'] = 'INSERT INTO equipe 
-                VALUES (0,`EX`,`ex.jpg`,0
+        $queries['Insert Exempt'] = 'INSERT INTO equipe 
+                VALUES (20,`EX`,`ex.jpg`,0
                 )';
+    }
+    if($result[('user_version')] < 5){
+        
+        $queries['Visible simple'] = 'ALTER TABLE simple ADD visible INTEGER';
+        $queries['Visible double'] = 'ALTER TABLE double ADD visible INTEGER';
     }
 }
 
