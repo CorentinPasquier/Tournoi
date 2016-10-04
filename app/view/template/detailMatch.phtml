@@ -8,7 +8,10 @@
 $_match = $this;
 $_post = $_match->getPost();
 $_utilisateur = Access::getInstance()->getCurrentUser();
-$defaultTeam = $_utilisateur->getAttribute('equipe_default');
+if($_utilisateur != null)
+    $defaultTeam = $_utilisateur->getAttribute('equipe_default');
+else
+    $defaultTeam = -1;
 $_matchCollection = $_match->getAllMatch();
 $idMatch = $_post['matchDetail'];
 $match = $_matchCollection->loadById($idMatch);
@@ -50,7 +53,7 @@ $joueurs_2 = $_match->getListJoueurByTeam($match->getAttribute('equipe_id_2'));
                 <div class="row col-lg-10 col-lg-offset-1 col-xs-offset-1 col-xs-10 col-sm-offset-1 col-sm-10" align="center">
                     <h1 class="titleMatch"><?php echo $equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('name') ?> <span id="scoreE1">0</span> - <span id="scoreE2">0</span> <?php echo $equipe->loadById($match->getAttribute('equipe_id_2'))->getAttribute('name') ?></h1>
                 </div>
-                <?php if($_utilisateur != NULL && ($equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('id') == $defaultTeam)): ?>
+                <?php if($_utilisateur != null && ($equipe->loadById($match->getAttribute('equipe_id_1'))->getAttribute('id') == $defaultTeam)): ?>
                 <div class="row marginContentTab">
                     <button class="btn btn-info mrg" type="submit">ENREGISTRER</button>
                 </div>

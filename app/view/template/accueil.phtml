@@ -28,7 +28,7 @@ foreach ($_matchsCollection as $match):
     $score = $_accueil->getScore($match);
     $equipe_1 = $_equipeCollection->loadById($match->getAttribute('equipe_id_1'));
     $equipe_2 = $_equipeCollection->loadById($match->getAttribute('equipe_id_2'));
-    $exempt = ($equipe_1->getAttribute('id') == 0 || $equipe_2->getAttribute('id') == 0)?1:0;
+    $exempt = ($equipe_1->getAttribute('id') == 20 || $equipe_2->getAttribute('id') == 20)?1:0;
     $ronde = $match->getAttribute("ronde");
     $date = $match->getDate();?>
     <form action="<?php echo $_accueil->getUrlActionRedirect('Matchs', 'detail') ?>" method="POST">

@@ -43,48 +43,52 @@ class MatchsController extends Controller
         /** @var SimpleModel $simple */
         foreach ($_allSimple as $simple) {
             $flag++;
-            if ($simple->getAttribute('score_1_1') > $simple->getAttribute('score_1_2'))
-                $score++;
-            else
-                $score--;
-            if ($simple->getAttribute('score_2_1') > $simple->getAttribute('score_2_2'))
-                $score++;
-            else
-                $score--;
-            if ($score == 0){
-                if ($simple->getAttribute('score_3_1') > $simple->getAttribute('score_3_2'))
+            if($simple->getAttribute('score_1_1') != "" || $simple->getAttribute('score_1_2') != "") {
+                if ($simple->getAttribute('score_1_1') > $simple->getAttribute('score_1_2'))
                     $score++;
                 else
                     $score--;
+                if ($simple->getAttribute('score_2_1') > $simple->getAttribute('score_2_2'))
+                    $score++;
+                else
+                    $score--;
+                if ($score == 0) {
+                    if ($simple->getAttribute('score_3_1') > $simple->getAttribute('score_3_2'))
+                        $score++;
+                    else
+                        $score--;
+                }
+                if ($score > 0)
+                    $score1++;
+                else
+                    $score2++;
+                $score = 0;
             }
-            if($score > 0)
-                $score1++;
-            else
-                $score2++;
-            $score = 0;
         }
         /** @var DoubleModel $double */
         foreach ($_allDouble as $double) {
             $flag++;
-            if ($double->getAttribute('score_1_1') > $double->getAttribute('score_1_2'))
-                $score++;
-            else
-                $score--;
-            if ($double->getAttribute('score_2_1') > $double->getAttribute('score_2_2'))
-                $score++;
-            else
-                $score--;
-            if ($score == 0){
-                if ($double->getAttribute('score_3_1') > $double->getAttribute('score_3_2'))
+            if($double->getAttribute('score_1_1') != "" || $double->getAttribute('score_1_2') != "") {
+                if ($double->getAttribute('score_1_1') > $double->getAttribute('score_1_2'))
                     $score++;
                 else
                     $score--;
+                if ($double->getAttribute('score_2_1') > $double->getAttribute('score_2_2'))
+                    $score++;
+                else
+                    $score--;
+                if ($score == 0) {
+                    if ($double->getAttribute('score_3_1') > $double->getAttribute('score_3_2'))
+                        $score++;
+                    else
+                        $score--;
+                }
+                if ($score > 0)
+                    $score1++;
+                else
+                    $score2++;
+                $score = 0;
             }
-            if($score > 0)
-                $score1++;
-            else
-                $score2++;
-            $score = 0;
         }
         if($flag == 0){
             return ['', ''];
@@ -135,7 +139,7 @@ class MatchsController extends Controller
             $array[$id] = $simple;
         }
         foreach ($post['scoreS'] as $id => $score) {
-            if($score['match_1_1'] != "" && $score['match_1_2'] != "" && $score['match_2_1'] != "" && $score['match_2_2'] != "") {
+//            if($score['match_1_1'] != "" && $score['match_1_2'] != "" && $score['match_2_1'] != "" && $score['match_2_2'] != "") {
                 $array[$id]->setAttribute('score_1_1', $score['match_1_1']);
                 $array[$id]->setAttribute('score_1_2', $score['match_1_2']);
                 $array[$id]->setAttribute('score_2_1', $score['match_2_1']);
@@ -144,7 +148,7 @@ class MatchsController extends Controller
                 $array[$id]->setAttribute('score_3_2', $score['match_3_2']);
                 if (!$array[$id]->save())
                     $erreur = true;
-            }
+//            }
         }
         foreach ($_allSimple as $key=> $id) {
             $simple = $_simpleCollection->loadById($id);
@@ -167,7 +171,7 @@ class MatchsController extends Controller
             $array[$id] = $double;
         }
         foreach ($post['scoreD'] as $id => $score) {
-            if($score['match_1_1'] != "" && $score['match_1_2'] != "" && $score['match_2_1'] != "" && $score['match_2_2'] != "") {
+//            if($score['match_1_1'] != "" && $score['match_1_2'] != "" && $score['match_2_1'] != "" && $score['match_2_2'] != "") {
                 $array[$id]->setAttribute('score_1_1', $score['match_1_1']);
                 $array[$id]->setAttribute('score_1_2', $score['match_1_2']);
                 $array[$id]->setAttribute('score_2_1', $score['match_2_1']);
@@ -176,7 +180,7 @@ class MatchsController extends Controller
                 $array[$id]->setAttribute('score_3_2', $score['match_3_2']);
                 if (!$array[$id]->save())
                     $erreur = true;
-            }
+//            }
         }
         foreach ($_allDouble as $key => $id) {
             $double = $_doubleCollection->loadById($id);
