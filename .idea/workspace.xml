@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d4d07d6b-10a7-44ef-8f7a-8576cd8d479d" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/tournoi.db" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Tournoi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -393,12 +391,12 @@
       <workItem from="1473180994233" duration="1809000" />
       <workItem from="1473182854131" duration="1408000" />
       <workItem from="1475603835960" duration="1787000" />
-      <workItem from="1475605961213" duration="54000" />
+      <workItem from="1475605961213" duration="164000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104843000" />
+    <option name="totallyTimeSpent" value="104953000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1431" y="24" width="1301" height="744" extended-state="6" />
