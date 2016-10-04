@@ -1,0 +1,4 @@
+./.gitignore
+./app/tools/config.ini
+./tournoi.db
+./.idea

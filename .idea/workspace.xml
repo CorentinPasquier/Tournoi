@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d4d07d6b-10a7-44ef-8f7a-8576cd8d479d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.gitignore" afterPath="$PROJECT_DIR$/app/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/AccueilController.php" afterPath="$PROJECT_DIR$/app/controller/AccueilController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/MatchsController.php" afterPath="$PROJECT_DIR$/app/controller/MatchsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/accueil.phtml" afterPath="$PROJECT_DIR$/app/view/template/accueil.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/detailMatch.phtml" afterPath="$PROJECT_DIR$/app/view/template/detailMatch.phtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/matchs.phtml" afterPath="$PROJECT_DIR$/app/view/template/matchs.phtml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/tournoi.db" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Tournoi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,7 +29,7 @@
       <file leaf-file-name="accueil.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/template/accueil.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="450">
               <caret line="30" column="88" selection-start-line="30" selection-start-column="88" selection-end-line="30" selection-end-column="88" />
               <folding>
                 <marker date="1475604427509" expanded="true" signature="3432:3749" ph="..." />
@@ -44,7 +41,7 @@
       <file leaf-file-name="AccueilController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controller/AccueilController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
+            <state relative-caret-position="1134">
               <caret line="63" column="58" selection-start-line="63" selection-start-column="58" selection-end-line="63" selection-end-column="58" />
               <folding />
             </state>
@@ -54,7 +51,7 @@
       <file leaf-file-name="ClassementController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controller/ClassementController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
+            <state relative-caret-position="864">
               <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
               <folding />
             </state>
@@ -64,7 +61,7 @@
       <file leaf-file-name="MatchsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controller/MatchsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
+            <state relative-caret-position="810">
               <caret line="45" column="58" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
               <folding />
             </state>
@@ -74,7 +71,7 @@
       <file leaf-file-name="matchs.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/template/matchs.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="522">
               <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
               <folding />
             </state>
@@ -92,10 +89,10 @@
         </entry>
       </file>
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/.gitignore">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
+            <state relative-caret-position="54">
+              <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -104,7 +101,7 @@
       <file leaf-file-name="detailMatch.phtml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/view/template/detailMatch.phtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-414">
+            <state relative-caret-position="126">
               <caret line="11" column="16" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="16" />
               <folding />
             </state>
@@ -114,7 +111,7 @@
       <file leaf-file-name="Access.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/tools/Access.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-421">
+            <state relative-caret-position="684">
               <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
               <folding />
             </state>
@@ -183,6 +180,7 @@
         <option value="$PROJECT_DIR$/app/controller/AccueilController.php" />
         <option value="$PROJECT_DIR$/app/controller/MatchsController.php" />
         <option value="$PROJECT_DIR$/app/.gitignore" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -227,8 +225,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -247,22 +243,10 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tournoi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Tournoi" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -270,6 +254,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/view/css" />
     </key>
@@ -405,12 +392,13 @@
       <workItem from="1472900290446" duration="1465000" />
       <workItem from="1473180994233" duration="1809000" />
       <workItem from="1473182854131" duration="1408000" />
-      <workItem from="1475603835960" duration="1493000" />
+      <workItem from="1475603835960" duration="1787000" />
+      <workItem from="1475605961213" duration="54000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="104495000" />
+    <option name="totallyTimeSpent" value="104843000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1431" y="24" width="1301" height="744" extended-state="6" />
@@ -708,16 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="828">
           <caret line="51" column="39" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="39" />
-          <folding>
-            <marker date="1472901708757" expanded="true" signature="945:1857" ph="SELECT joueu... simple" />
-            <marker date="1472901708757" expanded="true" signature="2700:3822" ph="SELECT j1.id... double" />
-            <marker date="1472901708757" expanded="true" signature="4873:5746" ph="SELECT joueu... simple" />
-            <marker date="1472901708757" expanded="true" signature="6591:7713" ph="SELECT j3.id... double" />
-            <marker date="1472901708757" expanded="true" signature="11110:11637" ph="SELECT joueu... " />
-            <marker date="1472901708757" expanded="true" signature="11662:12190" ph="SELECT joueu... " />
-            <marker date="1472901708757" expanded="true" signature="13653:14426" ph="SELECT j1.id... " />
-            <marker date="1472901708757" expanded="true" signature="14451:15223" ph="SELECT j3.id... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -725,21 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2070">
           <caret line="120" column="58" selection-start-line="120" selection-start-column="58" selection-end-line="120" selection-end-column="58" />
-          <folding>
-            <marker date="1472901708701" expanded="true" signature="432:785" ph="CREATE TABLE... utilisateur" />
-            <marker date="1472901708701" expanded="true" signature="821:991" ph="CREATE TABLE... equipe" />
-            <marker date="1472901708701" expanded="true" signature="1026:1389" ph="CREATE TABLE... match" />
-            <marker date="1472901708701" expanded="true" signature="1425:1848" ph="CREATE TABLE... simple" />
-            <marker date="1472901708701" expanded="true" signature="1884:2377" ph="CREATE TABLE... double" />
-            <marker date="1472901708701" expanded="true" signature="2417:2576" ph="INSERT INTO utilisateur... " />
-            <marker date="1472901708701" expanded="true" signature="2628:3444" ph="INSERT INTO equipe... " />
-            <marker date="1472901708701" expanded="true" signature="3568:3618" ph="ALTER TABLE utilisateur... " />
-            <marker date="1472901708701" expanded="true" signature="3717:3918" ph="CREATE TABLE... joueur" />
-            <marker date="1472901708701" expanded="true" signature="4012:4092" ph="INSERT INTO equipe... " />
-            <marker date="1472901708701" expanded="true" signature="4187:4217" ph="ALTER TABLE simple... " />
-            <marker date="1472901708701" expanded="true" signature="4187:4225" ph="ALTER TABLE simple... " />
-            <marker date="1472901708701" expanded="true" signature="4266:4304" ph="ALTER TABLE simple... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -747,12 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="466">
           <caret line="112" column="9" selection-start-line="112" selection-start-column="9" selection-end-line="112" selection-end-column="9" />
-          <folding>
-            <marker date="1472900441111" expanded="true" signature="1594:1657" ph="UPDATE ${{$t... " />
-            <marker date="1472900441111" expanded="true" signature="2086:2146" ph="INSERT INTO $... " />
-            <marker date="1472900441111" expanded="true" signature="2587:2636" ph="DELETE FROM " />
-            <marker date="1472900441111" expanded="true" signature="2856:2914" ph="UPDATE ${{$t... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -760,7 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1638">
           <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -782,7 +738,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/tools/Access.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-421">
+        <state relative-caret-position="684">
           <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
           <folding />
         </state>
@@ -790,7 +746,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/view/template/detailMatch.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-414">
+        <state relative-caret-position="126">
           <caret line="11" column="16" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="16" />
           <folding />
         </state>
@@ -798,7 +754,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/view/template/matchs.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="522">
           <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
           <folding />
         </state>
@@ -806,7 +762,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/view/template/accueil.phtml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="450">
           <caret line="30" column="88" selection-start-line="30" selection-start-column="88" selection-end-line="30" selection-end-column="88" />
           <folding>
             <marker date="1475604427509" expanded="true" signature="3432:3749" ph="..." />
@@ -816,7 +772,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/ClassementController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
+        <state relative-caret-position="864">
           <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
           <folding />
         </state>
@@ -824,7 +780,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/AccueilController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
+        <state relative-caret-position="1134">
           <caret line="63" column="58" selection-start-line="63" selection-start-column="58" selection-end-line="63" selection-end-column="58" />
           <folding />
         </state>
@@ -832,16 +788,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/MatchsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
+        <state relative-caret-position="810">
           <caret line="45" column="58" selection-start-line="45" selection-start-column="58" selection-end-line="45" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/.gitignore">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
+        <state relative-caret-position="54">
+          <caret line="3" column="7" selection-start-line="3" selection-start-column="7" selection-end-line="3" selection-end-column="7" />
           <folding />
         </state>
       </provider>
