@@ -49,7 +49,6 @@ class StatistiquesController extends Controller {
                           ON simple.joueur_1 = joueur.id 
                           INNER JOIN equipe 
                           ON equipe.id = joueur.team
-                          WHERE simple.
                           GROUP BY joueur.id";
 
         $stmt = $this->_connexion->prepareQuery($query_ext, []);
