@@ -484,8 +484,7 @@ class StatistiquesController extends Controller {
                 }
             );
         }
-
-
+        
         return $_stat;
     }
 
