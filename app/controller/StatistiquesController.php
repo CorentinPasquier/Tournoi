@@ -64,7 +64,17 @@ class StatistiquesController extends Controller {
         if($sort) {
             usort($_stat,
                 function ($a, $b) {
-                    return $a['ratio'] > $b['ratio'] ? -1 : 1;
+                    $return = 0;
+                    if($a['ratio'] > $b['ratio'])
+                        $return = -1;
+                    if($a['ratio'] < $b['ratio'])
+                        $return = 1;
+                    if($a['ratio'] == $b['ratio']) {
+                        if ($a['total'] >= $b['total'])
+                            $return = -1;
+                        else $return = 1;
+                    }
+                    return $return;
                 }
             );
         }
@@ -113,7 +123,17 @@ class StatistiquesController extends Controller {
         if($sort) {
             usort($_stat,
                 function ($a, $b) {
-                    return $a['ratio'] > $b['ratio'] ? -1 : 1;
+                    $return = 0;
+                    if($a['ratio'] > $b['ratio'])
+                        $return = -1;
+                    if($a['ratio'] < $b['ratio'])
+                        $return = 1;
+                    if($a['ratio'] == $b['ratio']) {
+                        if ($a['total'] >= $b['total'])
+                            $return = -1;
+                        else $return = 1;
+                    }
+                    return $return;
                 }
             );
         }
@@ -155,10 +175,21 @@ class StatistiquesController extends Controller {
         if($sort) {
             usort($_stat,
                 function ($a, $b) {
-                    return $a['ratio'] > $b['ratio'] ? -1 : 1;
+                    $return = 0;
+                    if($a['ratio'] > $b['ratio'])
+                        $return = -1;
+                    if($a['ratio'] < $b['ratio'])
+                        $return = 1;
+                    if($a['ratio'] == $b['ratio']) {
+                        if ($a['total'] >= $b['total'])
+                            $return = -1;
+                        else $return = 1;
+                    }
+                    return $return;
                 }
             );
         }
+
 
         return $_stat;
     }
@@ -206,7 +237,17 @@ class StatistiquesController extends Controller {
         if($sort) {
             usort($_stat,
                 function ($a, $b) {
-                    return $a['ratio'] > $b['ratio'] ? -1 : 1;
+                    $return = 0;
+                    if($a['ratio'] > $b['ratio'])
+                        $return = -1;
+                    if($a['ratio'] < $b['ratio'])
+                        $return = 1;
+                    if($a['ratio'] == $b['ratio']) {
+                        if ($a['total'] >= $b['total'])
+                            $return = -1;
+                        else $return = 1;
+                    }
+                    return $return;
                 }
             );
         }
@@ -239,8 +280,18 @@ class StatistiquesController extends Controller {
         }
 
         usort($_stat,
-            function($a, $b){
-                return $a['ratio'] > $b['ratio'] ? -1 : 1;
+            function ($a, $b) {
+                $return = 0;
+                if($a['ratio'] > $b['ratio'])
+                    $return = -1;
+                if($a['ratio'] < $b['ratio'])
+                    $return = 1;
+                if($a['ratio'] == $b['ratio']) {
+                    if ($a['total'] >= $b['total'])
+                        $return = -1;
+                    else $return = 1;
+                }
+                return $return;
             }
         );
 
@@ -273,8 +324,18 @@ class StatistiquesController extends Controller {
         }
 
         usort($_stat,
-            function($a, $b){
-                return $a['ratio'] > $b['ratio'] ? -1 : 1;
+            function ($a, $b) {
+                $return = 0;
+                if($a['ratio'] > $b['ratio'])
+                    $return = -1;
+                if($a['ratio'] < $b['ratio'])
+                    $return = 1;
+                if($a['ratio'] == $b['ratio']) {
+                    if ($a['total'] >= $b['total'])
+                        $return = -1;
+                    else $return = 1;
+                }
+                return $return;
             }
         );
 
@@ -330,10 +391,21 @@ class StatistiquesController extends Controller {
         if($sort) {
             usort($_stat,
                 function ($a, $b) {
-                    return $a['ratio'] > $b['ratio'] ? -1 : 1;
+                    $return = 0;
+                    if($a['ratio'] > $b['ratio'])
+                        $return = -1;
+                    if($a['ratio'] < $b['ratio'])
+                        $return = 1;
+                    if($a['ratio'] == $b['ratio']) {
+                        if ($a['total'] >= $b['total'])
+                            $return = -1;
+                        else $return = 1;
+                    }
+                    return $return;
                 }
             );
         }
+
 
         return $_stat;
     }
@@ -398,10 +470,21 @@ class StatistiquesController extends Controller {
         if($sort) {
             usort($_stat,
                 function ($a, $b) {
-                    return $a['ratio'] > $b['ratio'] ? -1 : 1;
+                    $return = 0;
+                    if($a['ratio'] > $b['ratio'])
+                        $return = -1;
+                    if($a['ratio'] < $b['ratio'])
+                        $return = 1;
+                    if($a['ratio'] == $b['ratio']) {
+                        if ($a['total'] >= $b['total'])
+                            $return = -1;
+                        else $return = 1;
+                    }
+                    return $return;
                 }
             );
         }
+
 
         return $_stat;
     }
