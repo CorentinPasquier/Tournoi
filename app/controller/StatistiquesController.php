@@ -261,21 +261,24 @@ class StatistiquesController extends Controller {
      * @return array
      */
     public function getWinLoseSimpleAll($array_dom, $array_ext) {
+        $min = ReadIni::getInstance()->getAttribute('general', 'simplemin');
         $_stat = [];
         foreach($array_dom as $key => $value) {
             if(array_key_exists($key, $array_ext)){
-               $_stat[$key]['nom'] = $array_dom[$key]['nom'];
-               $_stat[$key]['equipe'] = $array_dom[$key]['equipe'];
-               $_stat[$key]['win'] = $array_dom[$key]['win'] + $array_ext[$key]['win'];
-               $_stat[$key]['total'] = $array_dom[$key]['total'] + $array_ext[$key]['total'];
-               $_stat[$key]['ratio'] = number_format($_stat[$key]['win']*100/$_stat[$key]['total'],0);
+                if($array_dom[$key]['total'] + $array_ext[$key]['total'] > $min) {
+                    $_stat[$key]['nom'] = $array_dom[$key]['nom'];
+                    $_stat[$key]['equipe'] = $array_dom[$key]['equipe'];
+                    $_stat[$key]['win'] = $array_dom[$key]['win'] + $array_ext[$key]['win'];
+                    $_stat[$key]['total'] = $array_dom[$key]['total'] + $array_ext[$key]['total'];
+                    $_stat[$key]['ratio'] = number_format($_stat[$key]['win'] * 100 / $_stat[$key]['total'], 0);
+                }
             }
-            else {
+            else if($array_dom[$key]['total'] > $min){
                 $_stat[$key] = $array_dom[$key];
             }
         }
         foreach($array_ext as $key => $value) {
-            if(!array_key_exists($key, $array_dom))
+            if(!array_key_exists($key, $array_dom) && $array_ext[$key]['total'] > $min)
                 $_stat[$key] = $array_ext[$key];
         }
 
@@ -305,8 +308,9 @@ class StatistiquesController extends Controller {
      */
     public function getWinLoseDoubleAll($array_dom, $array_ext) {
         $_stat = [];
+        $min = ReadIni::getInstance()->getAttribute('general', 'doublemin');
         foreach($array_dom as $key => $value) {
-            if(array_key_exists($key, $array_ext)){
+            if(array_key_exists($key, $array_ext) && $array_dom[$key]['total'] + $array_ext[$key]['total'] > $min){
                $_stat[$key]['joueur1'] = $array_dom[$key]['joueur1'];
                $_stat[$key]['joueur2'] = $array_dom[$key]['joueur2'];
                $_stat[$key]['equipe'] = $array_dom[$key]['equipe'];
@@ -314,12 +318,12 @@ class StatistiquesController extends Controller {
                $_stat[$key]['total'] = $array_dom[$key]['total'] + $array_ext[$key]['total'];
                $_stat[$key]['ratio'] = number_format($_stat[$key]['sup']*100/$_stat[$key]['total'],0);
             }
-            else {
+            else if($array_dom[$key]['total'] > $min){
                 $_stat[$key] = $array_dom[$key];
             }
         }
         foreach($array_ext as $key => $value) {
-            if(array_key_exists($key, $array_dom))
+            if(array_key_exists($key, $array_dom) && $array_ext[$key]['total'] > $min)
                 $_stat[$key] = $array_ext[$key];
         }
 
@@ -348,6 +352,7 @@ class StatistiquesController extends Controller {
      */
     public function getHighestPointSimple($sort=false) {
         $_stat=[];
+        $min = ReadIni::getInstance()->getAttribute('general', 'simplemin');
         $query_dom = "SELECT joueur.id, joueur.name nom, equipe.name equipe, 
                         SUM(score_1_1)+SUM(score_2_1)+SUM(score_3_1) sum,
                         COUNT(joueur.name) score1, 
@@ -357,7 +362,8 @@ class StatistiquesController extends Controller {
                         ON joueur.id = simple.joueur_1
                       INNER JOIN equipe
                         ON equipe.id = joueur.team
-                      GROUP BY joueur.id";
+                      GROUP BY joueur.id
+                      HAVING (2*score1 + score3) > {$min}";
         $query_ext = "SELECT joueur.id, joueur.name nom, equipe.name equipe, 
                         SUM(score_1_2)+SUM(score_2_2)+SUM(score_3_2) sum,
                         COUNT(joueur.name) score1, 
@@ -367,7 +373,8 @@ class StatistiquesController extends Controller {
                         ON joueur.id = simple.joueur_2
                       INNER JOIN equipe
                         ON equipe.id = joueur.team
-                      GROUP BY joueur.id";
+                      GROUP BY joueur.id
+                      HAVING (2*score1 + score3) > {$min}";
         
         $stmt_dom = $this->_connexion->prepareQuery($query_dom, []);
         $results_dom = $stmt_dom->execute();
@@ -413,6 +420,7 @@ class StatistiquesController extends Controller {
 
     public function getHighestPointDouble($sort=false) {
         $_stat=[];
+        $min = ReadIni::getInstance()->getAttribute('general', 'doublemin');
         $query_dom = "SELECT j1.id id1,
                         j2.id id2,
                         MIN(j1.name,j2.name) joueur1, 
@@ -428,7 +436,8 @@ class StatistiquesController extends Controller {
                         ON j2.id = double.joueur_1_2 
                       INNER JOIN equipe
                         ON equipe.id = j1.team
-                      GROUP BY joueur1,joueur2";
+                      GROUP BY joueur1,joueur2
+                      HAVING (2*score1 + score3) > {$min}";
         $query_ext = "SELECT j3.id id1,
                         j4.id id2,
                         MIN(j3.name,j4.name) joueur1, 
@@ -444,7 +453,8 @@ class StatistiquesController extends Controller {
                         ON j4.id = double.joueur_2_2 
                       INNER JOIN equipe
                         ON equipe.id = j3.team
-                      GROUP BY joueur1,joueur2";
+                      GROUP BY joueur1,joueur2
+                      HAVING (2*score1 + score3) > {$min}";
 
         $stmt_dom = $this->_connexion->prepareQuery($query_dom, []);
         $results_dom = $stmt_dom->execute();
