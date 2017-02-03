@@ -10,7 +10,6 @@
 $_statistiques = $this;
 
 $limit = ReadIni::getInstance()->getAttribute('general', 'statlim');
-echo $limit;
 
 $winLoseSimpleDom = $_statistiques->getWinLoseSimpleDom(true);
 $winLoseSimpleExt = $_statistiques->getWinLoseSimpleExt(true);
@@ -38,7 +37,6 @@ $highestPointDouble = $_statistiques->getHighestPointDouble(true);
                     <th colspan="2">Gagnés</th>
                     <th colspan="2">Joués</th>
                 </tr>
-                <tr>
 
 <?php
 $i = 0;
@@ -46,16 +44,17 @@ foreach ($winLoseSimpleAll as $key => $value):
     if($i > $limit)
         break;
 ?>
-    <td colspan="1"><?php echo $i+1 ?></td>
-    <td colspan="3"><?php echo $value['nom'] ?></td>
-    <td colspan="3"><?php echo $value['equipe'] ?></td>
-    <td colspan="2"><?php echo $value['ratio'] ?> %</td>
-    <td colspan="2"><?php echo $value['win'] ?> V</td>
-    <td colspan="2"><?php echo $value['total']?> J</td>
+                <tr>
+                    <td colspan="1"><?php echo $i+1 ?></td>
+                    <td colspan="3"><?php echo $value['nom'] ?></td>
+                    <td colspan="3"><?php echo $value['equipe'] ?></td>
+                    <td colspan="2"><?php echo $value['ratio'] ?> %</td>
+                    <td colspan="2"><?php echo $value['win'] ?> V</td>
+                    <td colspan="2"><?php echo $value['total']?> J</td>
+                </tr>
 <?php
     $i++;
 endforeach; ?>
-                </tr>
             </table>
         </div>
     </div>
@@ -76,7 +75,6 @@ endforeach; ?>
                     <th colspan="2">Points</th>
                     <th colspan="2">Sets</th>
                 </tr>
-                <tr>
 
                     <?php
                     $i = 0;
@@ -84,16 +82,17 @@ endforeach; ?>
                         if($i > $limit)
                             break;
                         ?>
-                        <td colspan="1"><?php echo $i+1 ?></td>
-                        <td colspan="3"><?php echo $value['nom'] ?></td>
-                        <td colspan="3"><?php echo $value['equipe'] ?></td>
-                        <td colspan="2"><?php echo $value['ratio'] ?> pts/set</td>
-                        <td colspan="2"><?php echo $value['sum'] ?> pts</td>
-                        <td colspan="2"><?php echo $value['total']?> sets</td>
+                <tr>
+                    <td colspan="1"><?php echo $i+1 ?></td>
+                    <td colspan="3"><?php echo $value['nom'] ?></td>
+                    <td colspan="3"><?php echo $value['equipe'] ?></td>
+                    <td colspan="2"><?php echo $value['ratio'] ?> pts/set</td>
+                    <td colspan="2"><?php echo $value['sum'] ?> pts</td>
+                    <td colspan="2"><?php echo $value['total']?> sets</td>
+                </tr>
                         <?php
                         $i++;
                     endforeach; ?>
-                </tr>
             </table>
         </div>
     </div>
@@ -111,7 +110,6 @@ endforeach; ?>
                     <th colspan="2">Gagnés</th>
                     <th colspan="2">Joués</th>
                 </tr>
-                <tr>
 
 <?php
 $i = 0;
@@ -119,16 +117,17 @@ foreach ($winLoseDoubleAll as $key => $value):
     if($i > $limit)
         break;
 ?>
-    <td colspan="1"><?php echo $i+1 ?></td>
-    <td colspan="3"><?php echo $value['joueur1'].' & '.$value['joueur2'] ?></td>
-    <td colspan="3"><?php echo $value['equipe'] ?></td>
-    <td colspan="2"><?php echo $value['ratio'] ?> %</td>
-    <td colspan="2"><?php echo $value['sup'] ?> V</td>
-    <td colspan="2"><?php echo $value['total']?> J</td>
+                <tr>
+                    <td colspan="1"><?php echo $i+1 ?></td>
+                    <td colspan="3"><?php echo $value['joueur1'].' & '.$value['joueur2'] ?></td>
+                    <td colspan="3"><?php echo $value['equipe'] ?></td>
+                    <td colspan="2"><?php echo $value['ratio'] ?> %</td>
+                    <td colspan="2"><?php echo $value['sup'] ?> V</td>
+                    <td colspan="2"><?php echo $value['total']?> J</td>
+                </tr>
 <?php
     $i++;
 endforeach; ?>
-                </tr>
             </table>
         </div>
     </div>
@@ -149,24 +148,23 @@ endforeach; ?>
                     <th colspan="2">Points</th>
                     <th colspan="2">Sets</th>
                 </tr>
-                <tr>
-
                     <?php
                     $i = 0;
                     foreach ($highestPointSimple as $key => $value):
                         if($i > $limit)
                             break;
                         ?>
-                        <td colspan="1"><?php echo $i+1 ?></td>
-                        <td colspan="3"><?php echo $value['joueur1'] . ' & '  . $value['joueur2'] ?></td>
-                        <td colspan="3"><?php echo $value['equipe'] ?></td>
-                        <td colspan="2"><?php echo $value['ratio'] ?> pts/set</td>
-                        <td colspan="2"><?php echo $value['sum'] ?> pts</td>
-                        <td colspan="2"><?php echo $value['total']?> sets</td>
+                <tr>
+                    <td colspan="1"><?php echo $i+1 ?></td>
+                    <td colspan="3"><?php echo $value['joueur1'] . ' & '  . $value['joueur2'] ?></td>
+                    <td colspan="3"><?php echo $value['equipe'] ?></td>
+                    <td colspan="2"><?php echo $value['ratio'] ?> pts/set</td>
+                    <td colspan="2"><?php echo $value['sum'] ?> pts</td>
+                    <td colspan="2"><?php echo $value['total']?> sets</td>
+                </tr>
                         <?php
                         $i++;
                     endforeach; ?>
-                </tr>
             </table>
         </div>
     </div>

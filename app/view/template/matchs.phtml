@@ -26,7 +26,7 @@ $totalMatch = $_equipeCollection->getNumberMatch();
                 </ul>
                 <div class="tab-content marginContentTab">
                     <?php for($i=1; $i<=$totalMatch; $i++):?>
-                        <div role="tabpanel" class="tab-pane <?php echo ($i==1)?'in active':''?> marginContentTab fade" id="ronde<?php echo $i ?>">
+                        <div role="tabpanel" class="tab-pane <?php echo ($i==$day)?'in active':''?> marginContentTab fade" id="ronde<?php echo $i ?>">
                             <?php
                             /** @var MatchModel $match */
                             foreach ($_matchsCollection as $match):
