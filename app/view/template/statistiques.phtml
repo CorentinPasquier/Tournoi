@@ -9,7 +9,8 @@
 /** @var StatistiquesController $_statistiques */
 $_statistiques = $this;
 
-$limit = 2;
+$limit = ReadIni::getInstance()->getAttribute('general', 'statlim');
+echo $limit;
 
 $winLoseSimpleDom = $_statistiques->getWinLoseSimpleDom(true);
 $winLoseSimpleExt = $_statistiques->getWinLoseSimpleExt(true);
@@ -26,369 +27,147 @@ $highestPointDouble = $_statistiques->getHighestPointDouble(true);
 
 <?php if(sizeof($winLoseSimpleAll) >= $limit): ?>
     <div class="row" style="margin-top: 15px;">
-        <h4 class="stat_header">Classement des joueurs en simple (victoire / matchs joués)</h4>
-        <div style="margin-top: 25px;">
+        <h4 class="stat_header">Victoires en simple (victoire / matchs joués)</h4>
+        <div style="margin-top: 25px;" class="col-lg-offset-2 col-lg-8">
+            <table class="table table-hover" style="table-layout: fixed">
+                <tr>
+                    <th colspan="1">N°</th>
+                    <th colspan="3">Joueur</th>
+                    <th colspan="3">Equipe</th>
+                    <th colspan="2">% Victoire</th>
+                    <th colspan="2">Gagnés</th>
+                    <th colspan="2">Joués</th>
+                </tr>
+                <tr>
+
 <?php
 $i = 0;
 foreach ($winLoseSimpleAll as $key => $value):
-    if($i > 2)
+    if($i > $limit)
         break;
 ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p><?php echo $value['nom'] ?> (<?php echo $value['equipe'] ?>)</p>
-        <div class="c100 p<?php echo $value['ratio'] ?> small">
-            <span><?php echo $value['ratio'] ?>%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoires <?php echo $value['win'] ?>/<?php echo $value['total']?> matchs</p>
-    </div>
+    <td colspan="1"><?php echo $i+1 ?></td>
+    <td colspan="3"><?php echo $value['nom'] ?></td>
+    <td colspan="3"><?php echo $value['equipe'] ?></td>
+    <td colspan="2"><?php echo $value['ratio'] ?> %</td>
+    <td colspan="2"><?php echo $value['win'] ?> V</td>
+    <td colspan="2"><?php echo $value['total']?> J</td>
 <?php
     $i++;
-endforeach;
-while($i <= 2): ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p>Personne</p>
-        <div class="c100 p0 small">
-            <span>0%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoire 0/0 match</p>
-    </div>
-<?php
-    $i++;
-endwhile;
-?>
+endforeach; ?>
+                </tr>
+            </table>
         </div>
     </div>
 
     <!-- FIN STAT -->
-    <!-- DEBUT STAT -->
-
-<?php endif; ?>
-    <div class="row" style="margin-top: 15px;">
-        <?php if(sizeof($winLoseSimpleDom) >= $limit): ?>
-        <h4 class="stat_header">Classement des joueurs en simple à domicile (victoire / matchs joués)</h4>
-            <div style="margin-top: 25px;">
-<?php
-$i = 0;
-foreach ($winLoseSimpleDom as $key => $value):
-    if($i > 2)
-        break;
-?>
-        <div class="col-lg-4">
-            <p><b><?php echo $i+1 ?></b></p>
-            <p><?php echo $value['nom'] ?> (<?php echo $value['equipe'] ?>)</p>
-            <div class="c100 p<?php echo $value['ratio'] ?> small">
-                <span><?php echo $value['ratio'] ?>%</span>
-                <div class="slice">
-                    <div class="bar"></div>
-                    <div class="fill"></div>
-                </div>
-            </div>
-            <p>victoires <?php echo $value['win'] ?>/<?php echo $value['total']?> matchs</p>
-        </div>
-<?php $i++;
-endforeach;
-while($i <= 2): ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p>Personne</p>
-        <div class="c100 p0 small">
-            <span>0%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoire 0/0 match</p>
-    </div>
-<?php
-    $i++;
-endwhile;
-?>
-        </div>
-    </div>
-<?php endif; ?>
-    <div class="row" style="margin-top: 15px;">
-<?php if(sizeof($winLoseSimpleExt) >= $limit): ?>
-        <h4 class="stat_header">Classement des joueurs en simple à l'extérieur (victoire / matchs joués)</h4>
-        <div style="margin-top: 25px;">
-        <?php
-$i = 0;
-foreach ($winLoseSimpleExt as $key => $value):
-    if($i > 2)
-        break;
-?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p><?php echo $value['nom'] ?> (<?php echo $value['equipe'] ?>)</p>
-        <div class="c100 p<?php echo $value['ratio'] ?> small">
-            <span><?php echo $value['ratio'] ?>%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoires <?php echo $value['win'] ?>/<?php echo $value['total']?> matchs</p>
-    </div>
-<?php
-    $i++;
-endforeach;
-while($i <= 2): ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p>Personne</p>
-        <div class="c100 p0 small">
-            <span>0%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoire 0/0 match</p>
-    </div>
-<?php
-    $i++;
-endwhile;
-?>
-        </div>
-    </div>
 <?php endif; ?>
     <div class="row" style="margin-top: 15px;">
 <?php if(sizeof($highestPointSimple) >= $limit):
         ?>
-        <h4 class="stat_header">Classement des joueurs ayant marqué le plus de point par sets en simple (points / sets joués)</h4>
-        <div style="margin-top: 25px;">
-<?php
-$i = 0;
-foreach ($highestPointSimple as $key => $value):
-    if($i > 2)
-        break;
-    ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p><?php echo $value['nom'] ?> (<?php echo $value['equipe'] ?>)</p>
-        <div class="c100 p100 small orange">
-            <span><?php echo $value['ratio'] ?>pts</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>points <?php echo $value['sum'] ?>/<?php echo $value['total']?> sets</p>
-    </div>
-    <?php
-    $i++;
-endforeach;
-while($i <= 2): ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p>Personne</p>
-        <div class="c100 p0 small">
-            <span>0%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoire 0/0 match</p>
-    </div>
-    <?php
-    $i++;
-endwhile;
-?>
+        <h4 class="stat_header">Points par sets en simple (points / sets joués)</h4>
+        <div style="margin-top: 25px;" class="col-lg-offset-2 col-lg-8">
+            <table class="table table-hover" style="table-layout: fixed">
+                <tr>
+                    <th colspan="1">N°</th>
+                    <th colspan="3">Joueur</th>
+                    <th colspan="3">Equipe</th>
+                    <th colspan="2">Points / Sets</th>
+                    <th colspan="2">Points</th>
+                    <th colspan="2">Sets</th>
+                </tr>
+                <tr>
+
+                    <?php
+                    $i = 0;
+                    foreach ($highestPointSimple as $key => $value):
+                        if($i > $limit)
+                            break;
+                        ?>
+                        <td colspan="1"><?php echo $i+1 ?></td>
+                        <td colspan="3"><?php echo $value['nom'] ?></td>
+                        <td colspan="3"><?php echo $value['equipe'] ?></td>
+                        <td colspan="2"><?php echo $value['ratio'] ?> pts/set</td>
+                        <td colspan="2"><?php echo $value['sum'] ?> pts</td>
+                        <td colspan="2"><?php echo $value['total']?> sets</td>
+                        <?php
+                        $i++;
+                    endforeach; ?>
+                </tr>
+            </table>
         </div>
     </div>
 <?php endif; ?>
 <?php if(sizeof($winLoseDoubleAll) >= $limit): ?>
     <div class="row" style="margin-top: 15px;">
-        <h4 class="stat_header">Classement des meilleurs duos (victoire / matchs joués)</h4>
-        <div style="margin-top: 25px;">
+        <h4 class="stat_header">Victoires en double (victoire / matchs joués)</h4>
+        <div style="margin-top: 25px;" class="col-lg-offset-2 col-lg-8">
+            <table class="table table-hover" style="table-layout: fixed">
+                <tr>
+                    <th colspan="1">N°</th>
+                    <th colspan="3">Joueurs</th>
+                    <th colspan="3">Equipe</th>
+                    <th colspan="2">% Victoire</th>
+                    <th colspan="2">Gagnés</th>
+                    <th colspan="2">Joués</th>
+                </tr>
+                <tr>
+
 <?php
 $i = 0;
 foreach ($winLoseDoubleAll as $key => $value):
-    if($i > 2)
+    if($i > $limit)
         break;
 ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p><?php echo $value['joueur1'] ?> et <?php echo $value['joueur2'] ?> (<?php echo $value['equipe'] ?>)</p>
-        <div class="c100 p<?php echo $value['ratio'] ?> small">
-            <span><?php echo $value['ratio'] ?>%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoires <?php echo $value['sup'] ?>/<?php echo $value['total']?> matchs</p>
-    </div>
+    <td colspan="1"><?php echo $i+1 ?></td>
+    <td colspan="3"><?php echo $value['joueur1'].' & '.$value['joueur2'] ?></td>
+    <td colspan="3"><?php echo $value['equipe'] ?></td>
+    <td colspan="2"><?php echo $value['ratio'] ?> %</td>
+    <td colspan="2"><?php echo $value['sup'] ?> V</td>
+    <td colspan="2"><?php echo $value['total']?> J</td>
 <?php
     $i++;
-endforeach;
-while($i <= 2): ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p>Personne</p>
-        <div class="c100 p0 small">
-            <span>0%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoire 0/0 match</p>
-    </div>
-<?php
-    $i++;
-endwhile;
-?>
+endforeach; ?>
+                </tr>
+            </table>
         </div>
     </div>
 
     <!-- FIN STAT -->
-    <!-- DEBUT STAT -->
-
-<?php endif; ?>
-    <div class="row" style="margin-top: 15px;">
-        <?php if(sizeof($winLoseDoubleDom) >= $limit): ?>
-        <h4 class="stat_header">Classement des meilleurs duos à domicile (victoire / matchs joués)</h4>
-            <div style="margin-top: 25px;">
-<?php
-$i = 0;
-foreach ($winLoseDoubleDom as $key => $value):
-    if($i > 2)
-        break;
-?>
-        <div class="col-lg-4">
-            <p><b><?php echo $i+1 ?></b></p>
-            <p><?php echo $value['joueur1'] ?> et <?php echo $value['joueur2'] ?> (<?php echo $value['equipe'] ?>)</p>
-            <div class="c100 p<?php echo $value['ratio'] ?> small">
-                <span><?php echo $value['ratio'] ?>%</span>
-                <div class="slice">
-                    <div class="bar"></div>
-                    <div class="fill"></div>
-                </div>
-            </div>
-            <p>victoires <?php echo $value['sup'] ?>/<?php echo $value['total']?> matchs</p>
-        </div>
-<?php $i++;
-endforeach;
-while($i <= 2): ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p>Personne</p>
-        <div class="c100 p0 small">
-            <span>0%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoire 0/0 match</p>
-    </div>
-<?php
-    $i++;
-endwhile;
-?>
-        </div>
-    </div>
-<?php endif; ?>
-    <div class="row" style="margin-top: 15px;">
-<?php if(sizeof($winLoseDoubleExt) >= $limit): ?>
-        <h4 class="stat_header">Classement des meilleurs duos à l'extérieur (victoire / matchs joués)</h4>
-        <div style="margin-top: 25px;">
-        <?php
-$i = 0;
-foreach ($winLoseDoubleExt as $key => $value):
-    if($i > 2)
-        break;
-?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p><?php echo $value['joueur1'] ?> et <?php echo $value['joueur2'] ?> (<?php echo $value['equipe'] ?>)</p>
-        <div class="c100 p<?php echo $value['ratio'] ?> small">
-            <span><?php echo $value['ratio'] ?>%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoires <?php echo $value['sup'] ?>/<?php echo $value['total']?> matchs</p>
-    </div>
-<?php
-    $i++;
-endforeach;
-while($i <= 2): ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p>Personne</p>
-        <div class="c100 p0 small">
-            <span>0%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoire 0/0 match</p>
-    </div>
-<?php
-    $i++;
-endwhile;
-?>
-        </div>
-    </div>
 <?php endif; ?>
     <div class="row" style="margin-top: 15px;">
 <?php if(sizeof($highestPointSimple) >= $limit):
         ?>
-        <h4 class="stat_header">Classement des dus ayant marqué le plus de point par sets en double (points / sets joués)</h4>
-        <div style="margin-top: 25px;">
-<?php
-$i = 0;
-foreach ($highestPointDouble as $key => $value):
-    if($i > 2)
-        break;
-    ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p><?php echo $value['joueur1'] ?> et <?php echo $value['joueur2'] ?> (<?php echo $value['equipe'] ?>)</p>
-        <div class="c100 p100 small orange">
-            <span><?php echo $value['ratio'] ?>pts</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>points <?php echo $value['sum'] ?>/<?php echo $value['total']?> sets</p>
-    </div>
-    <?php
-    $i++;
-endforeach;
-while($i <= 2): ?>
-    <div class="col-lg-4">
-        <p><b><?php echo $i+1 ?></b></p>
-        <p>Personne</p>
-        <div class="c100 p0 small">
-            <span>0%</span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <p>victoire 0/0 match</p>
-    </div>
-    <?php
-    $i++;
-endwhile;
-?>
+        <h4 class="stat_header">Points par sets en double (points / sets joués)</h4>
+        <div style="margin-top: 25px;" class="col-lg-offset-2 col-lg-8">
+            <table class="table table-hover" style="table-layout: fixed">
+                <tr>
+                    <th colspan="1">N°</th>
+                    <th colspan="3">Joueurs</th>
+                    <th colspan="3">Equipe</th>
+                    <th colspan="2">Points / Sets</th>
+                    <th colspan="2">Points</th>
+                    <th colspan="2">Sets</th>
+                </tr>
+                <tr>
+
+                    <?php
+                    $i = 0;
+                    foreach ($highestPointSimple as $key => $value):
+                        if($i > $limit)
+                            break;
+                        ?>
+                        <td colspan="1"><?php echo $i+1 ?></td>
+                        <td colspan="3"><?php echo $value['joueur1'] . ' & '  . $value['joueur2'] ?></td>
+                        <td colspan="3"><?php echo $value['equipe'] ?></td>
+                        <td colspan="2"><?php echo $value['ratio'] ?> pts/set</td>
+                        <td colspan="2"><?php echo $value['sum'] ?> pts</td>
+                        <td colspan="2"><?php echo $value['total']?> sets</td>
+                        <?php
+                        $i++;
+                    endforeach; ?>
+                </tr>
+            </table>
         </div>
     </div>
 <?php endif; ?>

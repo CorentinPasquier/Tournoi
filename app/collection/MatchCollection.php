@@ -47,5 +47,18 @@ class MatchCollection extends Collection
 
         return $this;
     }
+
+    /**
+     * @return int
+     */
+    public function getCurrentDay() {
+        $query = "SELECT ronde
+                  FROM {$this->_table}
+                  WHERE id=MAX((SELECT MAX(`match`) FROM simple WHERE score_1_1 IS NOT NULL)
+                              ,(SELECT MAX(`match`) FROM `double` WHERE score_1_1 IS NOT NULL))";
+        $stmt = $this->_db->prepare($query);
+        $result = $stmt->execute();
+        return $result->fetchArray(SQLITE3_ASSOC)["ronde"];
+    }
         
 }

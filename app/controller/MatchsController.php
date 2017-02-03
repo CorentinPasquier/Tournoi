@@ -26,6 +26,13 @@ class MatchsController extends Controller
         $matchCollection = new MatchCollection();
         return $matchCollection->load(["en_cours" => ["<>", 0]],["ronde" => Collection::SORT_ASC]);
     }
+    /**
+     * @return int
+     */
+    public function getCurrentDay() {
+        $matchCollection = new MatchCollection();
+        return $matchCollection->getCurrentDay();
+    }
 
     /**
      * @param MatchModel $match

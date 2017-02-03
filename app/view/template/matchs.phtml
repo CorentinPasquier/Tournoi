@@ -8,6 +8,7 @@
 $_match = $this;
 $_utilisateur = Access::getInstance()->getCurrentUser();
 $_matchsCollection = $_match->getAllMatch();
+$day = $_match->getCurrentDay();
 $_equipeCollection = new EquipeCollection();
 $totalMatch = $_equipeCollection->getNumberMatch();
 
@@ -20,7 +21,7 @@ $totalMatch = $_equipeCollection->getNumberMatch();
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation"><a href="" role="tab" data-toggle="tab" id="jour">Journée</a></li>
                     <?php for($i=1; $i<=$totalMatch; $i++):?>
-                        <li role="presentation" <?php echo ($i==1)?'class="active"':''?>><a href="#ronde<?php echo $i?>" aria-controls="ronde<?php echo $i?>" role="tab" data-toggle="tab"><?php echo $i?></a></li>
+                        <li role="presentation" <?php echo ($i==$day)?'class="active"':''?>><a href="#ronde<?php echo $i?>" aria-controls="ronde<?php echo $i?>" role="tab" data-toggle="tab"><?php echo $i?></a></li>
                     <?php endfor;?>
                 </ul>
                 <div class="tab-content marginContentTab">
